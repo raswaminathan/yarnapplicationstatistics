@@ -1,0 +1,2440 @@
+Start time in millis: 1416028521034
+current time in elapsed ms=3010
+
+Cluster metrics: 
+Allocated MB: 0
+Available MB: 6144
+Total MB: 6144
+Apps Running: 0
+Containers Allocated: 0current time in elapsed ms=5042
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=7073
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=9103
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=11131
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=13176
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=15200
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=17226
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=19254
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=21277
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=23299
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=25324
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=27352
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=29376
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=31397
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=33427
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=35457
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=37482
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=39504
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=41527
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=43552
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=45569
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=47601
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=49623
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=51640
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=53660
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=55682
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=57703
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=59721
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=61740
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=63760
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=65774
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=67788
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=69807
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=71825
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=73839
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=75855
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=77873
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=79892
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=81909
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=83929
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=85961
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=87985
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=90003
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=92026
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=94066
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=96084
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=98111
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=100151
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=102173
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=104193
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=106213
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=108275
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=110290
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=112319
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=114340
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=116362
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=118383
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=120404
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=122434
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=124490
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=126518
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=128537
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=130573
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=132592
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=134611
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=136652
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=138674
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=140693
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=142713
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=144740
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=146756
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=148771
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=151034
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=153053
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=155070
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=157088
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=159119
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=161138
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=163205
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=165222
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=167246
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=169260
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=171274
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=173288
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=175306
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=177330
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=179357
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=181377
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=183394
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=185429
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=187447
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=189504
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=191521
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=193546
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=195574
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=197589
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=199607
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=201637
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=203657
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=205673
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=207710
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=209724
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=211741
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=213760
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=215778
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=217802
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=219929
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=221943
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=223961
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=225999
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=228017
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=230034
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=232049
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=234062
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=236085
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=238140
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=240161
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=242179
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=244198
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=246210
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=248225
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=250239
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=252256
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=254269
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=256281
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=258293
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=260306
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=262318
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=264328
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=266343
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=268356
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=270371
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=272385
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=274400
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=276414
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=278428
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=280440
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=282452
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=284465
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=286480
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=288491
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=290502
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=292514
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=294528
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=296543
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=298554
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=300566
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=302576
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=304589
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=306605
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=308615
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=310624
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=312635
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=314674
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=316683
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=318693
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=320703
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=322712
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=324723
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=326735
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=328744
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=330754
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=332763
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=334772
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=336784
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=338797
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=340807
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=342818
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=344831
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=346842
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=348854
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=350864
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=352874
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=354885
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=356896
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=358910
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=360921
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=362933
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=364943
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=366954
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=368965
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=370974
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=372985
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=374995
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=377005
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=379013
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=381022
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=383033
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=385041
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=387051
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=389079
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=391098
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=393109
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=395117
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=397126
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=399136
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=401146
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=403157
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=405166
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=407176
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=409184
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=411193
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=413206
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=415215
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=417224
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=419232
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=421244
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=423255
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=425265
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=427277
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=429286
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=431296
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=433303
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=435313
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=437326
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=439336
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=441346
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=443357
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=445365
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=447376
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=449384
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=451393
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=453403
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=455414
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=457424
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=459438
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=461462
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=463470
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=465478
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=467488
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=469495
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=471504
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=473513
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=475523
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=477531
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=479540
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=481550
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=483560
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=485572
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=487583
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=489591
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=491600
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=493611
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=495619
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=497629
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=499636
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=501645
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=503654
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=505667
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=507676
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=509686
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=511693
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=513700
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=515711
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=517722
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=519733
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=521740
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=523747
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=525756
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=527765
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=529777
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=531806
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=533814
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=535822
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=537834
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=539843
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=541854
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=543866
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=545874
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=547885
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=549894
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=551903
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=553910
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=555921
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=557931
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=559942
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=561953
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=563965
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=565973
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=567980
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=569990
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=571998
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=574007
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=576019
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=578029
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=580038
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=582047
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=584055
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=586063
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=588074
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=590083
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=592094
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=594120
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=596130
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=598136
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=600146
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=602168
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=604178
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=606187
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=608196
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=610206
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=612215
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=614227
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=616235
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=618242
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=620251
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=622259
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=624268
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=626276
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=628283
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=630294
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=911075
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=914250
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=916258
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=918267
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=920282
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=922290
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=924301
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=926309
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=928317
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=930324
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=932334
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=934342
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=936350
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=938357
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=940367
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=942375
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=944383
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=946392
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2current time in elapsed ms=948401
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=950428
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=952437
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=954446
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=956460
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=958472
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=960481
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=962491
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=964501
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=966511
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=968520
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=970529
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=972538
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=974546
+
+Cluster metrics: 
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1current time in elapsed ms=976554
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=978564
+
+Cluster metrics: 
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3current time in elapsed ms=980573
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=982583
+
+Cluster metrics: 
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2current time in elapsed ms=984592
+
+
