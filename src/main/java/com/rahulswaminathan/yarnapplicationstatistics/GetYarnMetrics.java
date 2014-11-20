@@ -6,7 +6,6 @@ package com.rahulswaminathan.yarnapplicationstatistics;
 import java.io.*;
 import java.util.*;
 
-import org.apache.hadoop.yarn.client.api.YarnClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -16,8 +15,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-
-import static com.rahulswaminathan.yarnapplicationstatistics.GetYarnMetrics.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -41,10 +38,10 @@ public class GetYarnMetrics {
         String propFileName = "conf.properties";
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-        props.load(inputStream);
         if (inputStream == null) {
             throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
         }
+        props.load(inputStream);
 
         String[] queues = props.getProperty("queues").split(",");
         String emem = props.getProperty("emem");
@@ -67,7 +64,7 @@ public class GetYarnMetrics {
             filename += "_" + str;
             queuesAsString += str + " ";
         }
-        BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
+        final BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
         BufferedWriter schedulerWriter = new BufferedWriter(new FileWriter(filename + "_scheduler.txt", true));
         BufferedWriter metricsWriter = new BufferedWriter(new FileWriter(filename + "_metrics.txt", true));
         GetYarnMetrics http = new GetYarnMetrics();
@@ -88,6 +85,41 @@ public class GetYarnMetrics {
         boolean hasStarted = false;
 
         iterationNumber = 0;
+
+        ApplicationListener applicationListener = new ApplicationListener() {
+            @Override
+            public void onAppBegin(Apps.app app) {
+                try {
+                    System.out.println(app.getId() + " started");
+                    writeMessage(app.getId() + " started", overallWriter);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onAppFinish(Apps.app app) {
+                try {
+                    System.out.println(app.getId() + "finished in: " + app.getElapsedTime());
+                    writeMessage(app.getId() + " finished in: " + app.getElapsedTime(), overallWriter);
+                    overallWriter.newLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onAppChangeState(Apps.app app) {
+                try {
+                    System.out.println(app.getId() + " state changed to: " + app.getState());
+                    writeMessage(app.getId() + " state changed to: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        applicationListener.startListening();
         while (true) {
             Thread.sleep(2000);
             iterationNumber++;
@@ -95,53 +127,26 @@ public class GetYarnMetrics {
 
             String clusterMetricsResponse  = http.sendClusterMetricsGet();
             String clusterSchedulerResponse = http.sendClusterSchedulerGet();
-            Scheduler.queue[] list = readJsonResponse(clusterSchedulerResponse);
+
+            Scheduler.queue[] schedulerQueues = readClusterSchedulerJsonResponse(clusterSchedulerResponse);
             long currentTimeElapsed = System.currentTimeMillis() - startTime;
             writeMessage("current time elapsed in ms=" + currentTimeElapsed, overallWriter, schedulerWriter, metricsWriter);
             makeNewLines(overallWriter, schedulerWriter, metricsWriter);
 
-            int numApps = getTotalApplications(list);
+            int numApps = getTotalApplications(schedulerQueues);
             writeMessage("Number of applications=" + numApps, overallWriter);
 
-            writeQueueInfoToFile(schedulerWriter, list);
+            writeQueueInfoToFile(schedulerWriter, schedulerQueues);
+            writeClusterMetrics(metricsWriter, clusterMetricsResponse);
 
             if (!hasStarted && numApps > 0)
                 hasStarted = true;
 
-            if (checkIfDone(hasStarted, list)) {
-                long endTime = System.currentTimeMillis();
-                Thread.sleep(5000);
-                list = readJsonResponse(http.sendClusterSchedulerGet());
-                if (checkIfDone(hasStarted, list)) {
-                    long totalTime = endTime - startTime;
-                    makeNewLines(overallWriter, schedulerWriter, metricsWriter);
-                    overallWriter.write("Total Time for jobs in ms: " + totalTime);
-                    makeNewLines(overallWriter, schedulerWriter, metricsWriter);
-                    flushAndCloseAllWriters(overallWriter, schedulerWriter, metricsWriter);
-                    break;
-                }
+            if (hasStarted && applicationListener.getAppsSet().isEmpty()) {
+                applicationListener.stopListening();
+                flushAndCloseAllWriters(overallWriter, schedulerWriter, metricsWriter);
+                break;
             }
-
-            writeClusterMetrics(metricsWriter, clusterMetricsResponse);
-        }
-    }
-
-    private void writeMessage(String message, BufferedWriter ... writers) throws Exception {
-        for (BufferedWriter writer : writers) {
-            writer.write(message);
-        }
-    }
-
-    private void flushAndCloseAllWriters(BufferedWriter ... writers) throws IOException {
-        for (BufferedWriter writer : writers) {
-            writer.flush();
-            writer.close();
-        }
-    }
-
-    private void makeNewLines(BufferedWriter ... writers) throws IOException {
-        for (BufferedWriter writer : writers) {
-            writer.newLine();
         }
     }
 
@@ -174,6 +179,25 @@ public class GetYarnMetrics {
             result.append(line);
         }
         return result.toString();
+    }
+
+    private void writeMessage(String message, BufferedWriter ... writers) throws Exception {
+        for (BufferedWriter writer : writers) {
+            writer.write(message);
+        }
+    }
+
+    private void flushAndCloseAllWriters(BufferedWriter ... writers) throws IOException {
+        for (BufferedWriter writer : writers) {
+            writer.flush();
+            writer.close();
+        }
+    }
+
+    private void makeNewLines(BufferedWriter ... writers) throws IOException {
+        for (BufferedWriter writer : writers) {
+            writer.newLine();
+        }
     }
 
     private void writeQueueInfoToFile(BufferedWriter writer, Scheduler.queue[] list) throws Exception {
@@ -221,30 +245,17 @@ public class GetYarnMetrics {
         return totalApps;
     }
 
-    private Map<String, Integer> populateQueueNameToApps(Scheduler.queue[] list) {
-        Map<String, Integer> toRet = new HashMap<String, Integer>();
-        for (Scheduler.queue q : list) {
-            toRet.put(q.getQueueName(), q.getNumApplications());
-        }
-        return toRet;
+    private Apps.app[] readAppsJsonResponse(String appsJsonResponse) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        JsonNode node = mapper.readTree(appsJsonResponse);
+        node = node.get("apps").get("app");
+        TypeReference<Apps.app[]> typeRef = new TypeReference<Apps.app[]>() {};
+        return mapper.readValue(node.traverse(), typeRef);
     }
 
-    private boolean checkIfDone(boolean hasStarted, Scheduler.queue[] list) throws Exception{
-        if (!hasStarted)
-            return false;
-
-        Map<String, Integer> queueNameToApps = populateQueueNameToApps(list);
-        boolean isDone = true;
-        for (String qu : queueNameToApps.keySet()) {
-            int apps = queueNameToApps.get(qu);
-            if (apps != 0)
-                isDone = false;
-        }
-
-        return isDone;
-    }
-
-    private Scheduler.queue[] readJsonResponse(String clusterSchedulerResponse) throws Exception {
+    private Scheduler.queue[] readClusterSchedulerJsonResponse(String clusterSchedulerResponse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -315,7 +326,7 @@ class StatsThread implements Runnable {
         }
     }
 
-    public void launchSparkJob(String dmem, String emem, String ... queues) throws Exception{
+    private void launchSparkJob(String dmem, String emem, String ... queues) throws Exception{
         for (String queue : queues) {
             new ProcessBuilder("/bin/bash", "/Users/rahulswaminathan/" +
                     "IdeaProjects/yarn-application-statistics/run_spark_pi.sh", dmem, emem, queue).start();
