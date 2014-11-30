@@ -1,188 +1,697 @@
-Date started: Thu Nov 20 01:37:42 EST 2014
-current time elapsed in ms=2046
+Date started: Sat Nov 29 19:42:01 EST 2014
+1
+current time elapsed in ms=2350
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
 
-QUEUE: a Resources Used: 0
+QUEUE: b
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 0
+
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
-Num Containers: 0
-Num applications: 0
-Num active applications: 0
+
 Total Applications: 0
 Total Active Applications: 0
 Total Containers: 0
-current time elapsed in ms=4060
 
-QUEUE: a Resources Used: 0
+2
+current time elapsed in ms=4431
+QUEUE: a
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 0
+
+QUEUE: b
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
+
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
+
 Total Applications: 0
 Total Active Applications: 0
 Total Containers: 0
-current time elapsed in ms=6073
 
-QUEUE: a Resources Used: 0
+3
+current time elapsed in ms=6523
+QUEUE: a
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 0
+
+QUEUE: b
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
+
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
+
 Total Applications: 0
 Total Active Applications: 0
 Total Containers: 0
-current time elapsed in ms=8087
 
-QUEUE: a Resources Used: 0
+4
+current time elapsed in ms=8612
+QUEUE: a
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 0
+
+QUEUE: b
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+Total Applications: 0
+Total Active Applications: 0
+Total Containers: 0
+
+5
+current time elapsed in ms=10733
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+Total Applications: 0
+Total Active Applications: 0
+Total Containers: 0
+
+6
+current time elapsed in ms=12867
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+Total Applications: 0
+Total Active Applications: 0
+Total Containers: 0
+
+7
+current time elapsed in ms=14968
+QUEUE: b
+Resources Used: 0
 Num Containers: 0
 Num applications: 1
 Num active applications: 1
-QUEUE: c Resources Used: 0
-Num Containers: 0
-Num applications: 0
-Num active applications: 0
-Total Applications: 1
-Total Active Applications: 1
-Total Containers: 0
-current time elapsed in ms=10099
 
-QUEUE: c Resources Used: 0
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: a Resources Used: 2048
+
+QUEUE: a
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
-QUEUE: b Resources Used: 2048
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 1
+
+8
+current time elapsed in ms=17014
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
 Total Applications: 2
 Total Active Applications: 2
 Total Containers: 2
-current time elapsed in ms=12114
 
-QUEUE: c Resources Used: 0
+9
+current time elapsed in ms=19067
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: a Resources Used: 2048
+
+QUEUE: a
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
-QUEUE: b Resources Used: 2048
+
+QUEUE: b
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
+
 Total Applications: 2
 Total Active Applications: 2
 Total Containers: 2
-current time elapsed in ms=14123
 
-QUEUE: c Resources Used: 0
+10
+current time elapsed in ms=21111
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 2048
+
+QUEUE: a
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
-QUEUE: a Resources Used: 4096
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+11
+current time elapsed in ms=23169
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+12
+current time elapsed in ms=25218
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+13
+current time elapsed in ms=27273
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+14
+current time elapsed in ms=29320
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+15
+current time elapsed in ms=31353
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: a
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 2
+
+16
+current time elapsed in ms=33417
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
 Num Containers: 2
 Num applications: 1
 Num active applications: 1
+
 Total Applications: 2
 Total Active Applications: 2
 Total Containers: 3
-current time elapsed in ms=16129
 
-QUEUE: c Resources Used: 0
+17
+current time elapsed in ms=35503
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 2048
+
+QUEUE: b
+Resources Used: 2048
 Num Containers: 1
 Num applications: 1
 Num active applications: 1
-QUEUE: a Resources Used: 4096
+
+QUEUE: a
+Resources Used: 4096
 Num Containers: 2
 Num applications: 1
 Num active applications: 1
+
 Total Applications: 2
 Total Active Applications: 2
 Total Containers: 3
-current time elapsed in ms=18135
 
-QUEUE: a Resources Used: 0
+18
+current time elapsed in ms=37974
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
-Num Containers: 0
-Num applications: 0
-Num active applications: 0
-QUEUE: b Resources Used: 4096
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
 Num Containers: 2
 Num applications: 1
 Num active applications: 1
-Total Applications: 1
-Total Active Applications: 1
-Total Containers: 2
-current time elapsed in ms=20142
 
-QUEUE: a Resources Used: 0
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 3
+
+19
+current time elapsed in ms=40011
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
-Num Containers: 0
-Num applications: 0
-Num active applications: 0
-QUEUE: b Resources Used: 4096
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
 Num Containers: 2
 Num applications: 1
 Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 3
+
+20
+current time elapsed in ms=42055
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 3
+
+21
+current time elapsed in ms=44096
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 3
+
+22
+current time elapsed in ms=46128
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+QUEUE: a
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 2
+Total Active Applications: 2
+Total Containers: 3
+
+23
+current time elapsed in ms=48229
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
 Total Applications: 1
 Total Active Applications: 1
 Total Containers: 2
-current time elapsed in ms=22148
 
-QUEUE: a Resources Used: 0
+24
+current time elapsed in ms=50255
+QUEUE: a
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: b Resources Used: 0
+
+QUEUE: c
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-QUEUE: c Resources Used: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 2
+
+25
+current time elapsed in ms=52285
+QUEUE: a
+Resources Used: 0
 Num Containers: 0
 Num applications: 0
 Num active applications: 0
-Total Applications: 0
-Total Active Applications: 0
-Total Containers: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 2
+
+26
+current time elapsed in ms=54324
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 2
+
+27
+current time elapsed in ms=56365
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 2
+
+28
+current time elapsed in ms=58405
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 4096
+Num Containers: 2
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 2
+
+29
+current time elapsed in ms=60438
+QUEUE: a
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: c
+Resources Used: 0
+Num Containers: 0
+Num applications: 0
+Num active applications: 0
+
+QUEUE: b
+Resources Used: 2048
+Num Containers: 1
+Num applications: 1
+Num active applications: 1
+
+Total Applications: 1
+Total Active Applications: 1
+Total Containers: 1
+

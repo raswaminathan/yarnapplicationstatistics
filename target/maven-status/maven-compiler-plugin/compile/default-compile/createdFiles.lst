@@ -1,5 +1,4 @@
 com/rahulswaminathan/yarnapplicationstatistics/ApplicationListener$AppThread.class
-com/rahulswaminathan/yarnapplicationstatistics/YarnEventListener.class
 com/rahulswaminathan/yarnapplicationstatistics/StatsThread.class
 com/rahulswaminathan/yarnapplicationstatistics/Scheduler.class
 com/rahulswaminathan/yarnapplicationstatistics/GetYarnMetrics$1.class

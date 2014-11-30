@@ -25,6 +25,7 @@ public abstract class ApplicationListener {
     private long startTime = 0;
     private Set<Apps.app> removedApps = new HashSet<Apps.app>();
     private Map<Apps.app, String> appToStateMap = new HashMap<Apps.app, String>();
+    private Map<Apps.app, Integer> appToContainersMap = new HashMap<Apps.app, Integer>();
     private Thread thread;
     private AppThread runnable;
 
@@ -53,12 +54,15 @@ public abstract class ApplicationListener {
 
     public abstract void onAppChangeState(Apps.app app);
 
+    public abstract void onAppChangeContainers(Apps.app app);
+
     public Set<Apps.app> getAppsSet() {
         return appsSet;
     }
 
     private String sendAppsGet(long startTime) throws Exception {
-        String url = "http://localhost:8088/ws/v1/cluster/apps?startedTimeBegin=" + startTime;
+        GetYarnMetrics y = new GetYarnMetrics();
+        String url = "http://" + y.getYarnWEBUI() + "/ws/v1/cluster/apps?startedTimeBegin=" + startTime;
         return sendGetToURL(url);
     }
 
@@ -113,6 +117,7 @@ public abstract class ApplicationListener {
                         if (!appsSet.contains(app) && !removedApps.contains(app)) {
                             appsSet.add(app);
                             appToStateMap.put(app, app.getState());
+                            appToContainersMap.put(app, app.getRunningContainers());
                             onAppBegin(app);
                         }
                         if (app.getState().equals("FINISHED") && !removedApps.contains(app)) {
@@ -124,6 +129,10 @@ public abstract class ApplicationListener {
                         if (!app.getState().equals(appToStateMap.get(app))) {
                             appToStateMap.put(app,app.getState());
                             onAppChangeState(app);
+                        }
+                        if (app.getRunningContainers() != appToContainersMap.get(app)) {
+                            appToContainersMap.put(app,app.getRunningContainers());
+                            onAppChangeContainers(app);
                         }
                     }
                 } catch (Exception e) {

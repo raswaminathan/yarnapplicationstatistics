@@ -15,6 +15,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+//import org.apache.spark.SparkContext;
+//import org.apache.spark.SparkConf;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -26,6 +28,12 @@ public class GetYarnMetrics {
     private int iterationNumber = 0;
     private float totalAllocatedMB = 0;
     private float averageAllocatdMB = 0;
+    private String[] queues;
+    private String emem;
+    private String dmem;
+    private Integer numIterations;
+    private String sparkMaster;
+    private String yarnWEBUI;
 
     public static void main(String[] args) throws Exception {
         GetYarnMetrics m = new GetYarnMetrics();
@@ -33,7 +41,7 @@ public class GetYarnMetrics {
         m.start();
     }
 
-    public void start() throws Exception{
+    public GetYarnMetrics() throws Exception {
         Properties props = new Properties();
         String propFileName = "conf.properties";
 
@@ -43,12 +51,21 @@ public class GetYarnMetrics {
         }
         props.load(inputStream);
 
-        String[] queues = props.getProperty("queues").split(",");
-        String emem = props.getProperty("emem");
-        String dmem = props.getProperty("dmem");
-        Integer numIterations = Integer.parseInt(props.getProperty("numIterations"));
+        queues = props.getProperty("queues").split(",");
+        emem = props.getProperty("emem");
+        dmem = props.getProperty("dmem");
+        numIterations = Integer.parseInt(props.getProperty("numIterations"));
+        sparkMaster = props.getProperty("sparkMaster");
+        yarnWEBUI = props.getProperty("yarnWEBUI");
+    }
 
-        Runnable run = new StatsThread(numIterations, dmem, emem, queues);
+    public String getYarnWEBUI() {
+        return yarnWEBUI;
+    }
+
+    public void start() throws Exception{
+
+        Runnable run = new StatsThread(numIterations, dmem, emem, sparkMaster, queues);
         new Thread(run).start();
 
         doStats(dmem, emem, queues);
@@ -90,8 +107,22 @@ public class GetYarnMetrics {
             @Override
             public void onAppBegin(Apps.app app) {
                 try {
-                    System.out.println(app.getId() + " started");
-                    writeMessage(app.getId() + " started", overallWriter);
+                    overallWriter.newLine();
+                    overallWriter.newLine();
+                    writeMessage(app.getId(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("STARTED", overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
+                    overallWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -100,8 +131,21 @@ public class GetYarnMetrics {
             @Override
             public void onAppFinish(Apps.app app) {
                 try {
-                    System.out.println(app.getId() + "finished in: " + app.getElapsedTime());
-                    writeMessage(app.getId() + " finished in: " + app.getElapsedTime(), overallWriter);
+                    overallWriter.newLine();
+                    overallWriter.newLine();
+                    writeMessage(app.getId(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("FINISHED IN: " + app.getElapsedTime(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
                     overallWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -111,8 +155,45 @@ public class GetYarnMetrics {
             @Override
             public void onAppChangeState(Apps.app app) {
                 try {
-                    System.out.println(app.getId() + " state changed to: " + app.getState());
-                    writeMessage(app.getId() + " state changed to: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    overallWriter.newLine();
+                    writeMessage(app.getId(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CHANGED STATE TO: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
+                    overallWriter.newLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onAppChangeContainers(Apps.app app) {
+                try {
+                    overallWriter.newLine();
+                    overallWriter.newLine();
+                    writeMessage(app.getId(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CHANGED NUMBER OF RUNNING CONTAINERS TO: " + app.getRunningContainers(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
                     overallWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -124,7 +205,8 @@ public class GetYarnMetrics {
             Thread.sleep(2000);
             iterationNumber++;
             overallWriter.newLine();
-
+            writeMessage(Integer.toString(iterationNumber), overallWriter, schedulerWriter, metricsWriter);
+            makeNewLines(overallWriter, schedulerWriter, metricsWriter);
             String clusterMetricsResponse  = http.sendClusterMetricsGet();
             String clusterSchedulerResponse = http.sendClusterSchedulerGet();
 
@@ -135,6 +217,9 @@ public class GetYarnMetrics {
 
             int numApps = getTotalApplications(schedulerQueues);
             writeMessage("Number of applications=" + numApps, overallWriter);
+            overallWriter.newLine();
+            writeMessage("Total number of containers=" + getTotalContainers(schedulerQueues), overallWriter);
+            overallWriter.newLine();
 
             writeQueueInfoToFile(schedulerWriter, schedulerQueues);
             writeClusterMetrics(metricsWriter, clusterMetricsResponse);
@@ -152,12 +237,12 @@ public class GetYarnMetrics {
 
     // HTTP GET request
     private String sendClusterMetricsGet() throws Exception {
-        String url = "http://localhost:8088/ws/v1/cluster/metrics";
+        String url = "http://" + yarnWEBUI + "/ws/v1/cluster/metrics";
         return sendGetToURL(url);
     }
 
     private String sendClusterSchedulerGet() throws Exception {
-        String url = "http://localhost:8088/ws/v1/cluster/scheduler";
+        String url = "http://" + yarnWEBUI + "/ws/v1/cluster/scheduler";
         return sendGetToURL(url);
     }
 
@@ -201,15 +286,17 @@ public class GetYarnMetrics {
     }
 
     private void writeQueueInfoToFile(BufferedWriter writer, Scheduler.queue[] list) throws Exception {
-        writer.newLine();
         for (Scheduler.queue q : list) {
-            writer.write("QUEUE: " + q.getQueueName() + " Resources Used: " + q.getResourcesUsed().getMemory());
+            writer.write("QUEUE: " + q.getQueueName());
+            writer.newLine();
+            writer.write("Resources Used: " + q.getResourcesUsed().getMemory());
             writer.newLine();
             writer.write("Num Containers: " + q.getNumContainers());
             writer.newLine();
             writer.write("Num applications: " + q.getNumApplications());
             writer.newLine();
             writer.write("Num active applications: " + q.getNumActiveApplications());
+            writer.newLine();
             writer.newLine();
         }
 
@@ -218,6 +305,7 @@ public class GetYarnMetrics {
         writer.write("Total Active Applications: " + getTotalActiveApplications(list));
         writer.newLine();
         writer.write("Total Containers: " + getTotalContainers(list));
+        writer.newLine();
         writer.newLine();
     }
 
@@ -268,13 +356,10 @@ public class GetYarnMetrics {
     private void writeClusterMetrics(BufferedWriter writer, String clusterMetricsResponse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         ClusterMetrics metrics = mapper.readValue(clusterMetricsResponse, ClusterMetrics.class);
-        writer.newLine();
-        writer.write("Cluster metrics: ");
-        writer.newLine();
         writer.write("Allocated MB: " + Long.toString(metrics.getClusterMetrics().getAllocatedMB()));
+        writer.newLine();
         totalAllocatedMB += metrics.getClusterMetrics().getAllocatedMB();
         averageAllocatdMB = totalAllocatedMB / iterationNumber;
-        writer.newLine();
         writer.write("Available MB: " + Long.toString(metrics.getClusterMetrics().getAvailableMB()));
         writer.newLine();
         writer.write("Total MB: " + Long.toString(metrics.getClusterMetrics().getTotalMB()));
@@ -284,6 +369,7 @@ public class GetYarnMetrics {
         writer.write("Containers Allocated: " + metrics.getClusterMetrics().getContainersAllocated());
         writer.newLine();
         writer.write("Average Allocated MB: " + averageAllocatdMB);
+        writer.newLine();
     }
 }
 
@@ -293,12 +379,14 @@ class StatsThread implements Runnable {
     private String emem;
     private String[] queues;
     private int numIterations;
+    private String sparkMaster;
 
-    public StatsThread(int numIterations, String dmem, String emem, String... queues) {
+    public StatsThread(int numIterations, String dmem, String emem, String sparkMaster, String... queues) {
         this.numIterations = numIterations;
         this.dmem = dmem;
         this.emem = emem;
         this.queues = queues;
+        this.sparkMaster = sparkMaster;
     }
 
     public void run() {
@@ -327,6 +415,13 @@ class StatsThread implements Runnable {
     }
 
     private void launchSparkJob(String dmem, String emem, String ... queues) throws Exception{
+        // Create spark context, spark configuration, add listener, pass all parameters to third party program
+        // (Ex. SparkPi)
+      //  SparkConf conf = new SparkConf();
+        //conf.setMaster(sparkMaster).setSparkHome(System.getenv("SPARK_HOME"));
+
+       // SparkContext sc = new SparkContext(conf);
+
         for (String queue : queues) {
             new ProcessBuilder("/bin/bash", "/Users/rahulswaminathan/" +
                     "IdeaProjects/yarn-application-statistics/run_spark_pi.sh", dmem, emem, queue).start();

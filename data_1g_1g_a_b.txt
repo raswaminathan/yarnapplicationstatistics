@@ -2,31 +2,275 @@ executer memory: 1g
 driver memory: 1g
 number of queues: 2
 queues: a b 
-Date started: Thu Nov 20 01:37:42 EST 2014
+Date started: Sat Nov 29 19:42:01 EST 2014
 
-current time elapsed in ms=2046
+1
+current time elapsed in ms=2350
 Number of applications=0
-current time elapsed in ms=4060
+Total number of containers=0
+
+2
+current time elapsed in ms=4431
 Number of applications=0
-current time elapsed in ms=6073
-Number of applications=0application_1416384540736_0037 started
-current time elapsed in ms=8087
-Number of applications=1application_1416384540736_0038 started
-current time elapsed in ms=10099
+Total number of containers=0
+
+3
+current time elapsed in ms=6523
+Number of applications=0
+Total number of containers=0
+
+4
+current time elapsed in ms=8612
+Number of applications=0
+Total number of containers=0
+
+5
+current time elapsed in ms=10733
+Number of applications=0
+Total number of containers=0
+
+6
+current time elapsed in ms=12867
+Number of applications=0
+Total number of containers=0
+
+
+application_1417306258463_0011
+STARTED
+IN QUEUE: a
+at time elapsed: 14274
+CURRENT STATE: SUBMITTED
+CURRENT NUM CONTAINERS: 0
+CURRENT MEMORY ALLOCATED IN MB: 0
+
+
+application_1417306258463_0011
+CHANGED STATE TO: ACCEPTED
+IN QUEUE: a
+at time elapsed: 14302
+CURRENT STATE: ACCEPTED
+CURRENT NUM CONTAINERS: 0
+CURRENT MEMORY ALLOCATED IN MB: 0
+
+
+application_1417306258463_0012
+STARTED
+IN QUEUE: b
+at time elapsed: 14355
+CURRENT STATE: ACCEPTED
+CURRENT NUM CONTAINERS: 0
+CURRENT MEMORY ALLOCATED IN MB: 0
+
+
+application_1417306258463_0011
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 1
+IN QUEUE: a
+at time elapsed: 14620
+CURRENT STATE: ACCEPTED
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+7
+current time elapsed in ms=14968
 Number of applications=2
-current time elapsed in ms=12114
-Number of applications=2application_1416384540736_0038 state changed to: RUNNING
+Total number of containers=1
 
-current time elapsed in ms=14123
-Number of applications=2application_1416384540736_0037 state changed to: RUNNING
 
-current time elapsed in ms=16129
-Number of applications=2application_1416384540736_0038 finished in: 8333
+application_1417306258463_0012
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 1
+IN QUEUE: b
+at time elapsed: 15626
+CURRENT STATE: ACCEPTED
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
 
-current time elapsed in ms=18135
+8
+current time elapsed in ms=17014
+Number of applications=2
+Total number of containers=2
+
+9
+current time elapsed in ms=19067
+Number of applications=2
+Total number of containers=2
+
+10
+current time elapsed in ms=21111
+Number of applications=2
+Total number of containers=2
+
+11
+current time elapsed in ms=23169
+Number of applications=2
+Total number of containers=2
+
+12
+current time elapsed in ms=25218
+Number of applications=2
+Total number of containers=2
+
+13
+current time elapsed in ms=27273
+Number of applications=2
+Total number of containers=2
+
+14
+current time elapsed in ms=29320
+Number of applications=2
+Total number of containers=2
+
+15
+current time elapsed in ms=31353
+Number of applications=2
+Total number of containers=2
+
+
+application_1417306258463_0011
+CHANGED STATE TO: RUNNING
+IN QUEUE: a
+at time elapsed: 32300
+CURRENT STATE: RUNNING
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+
+application_1417306258463_0011
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 2
+IN QUEUE: a
+at time elapsed: 32769
+CURRENT STATE: RUNNING
+CURRENT NUM CONTAINERS: 2
+CURRENT MEMORY ALLOCATED IN MB: 4096
+
+16
+current time elapsed in ms=33417
+Number of applications=2
+Total number of containers=3
+
+17
+current time elapsed in ms=35503
+Number of applications=2
+Total number of containers=3
+
+18
+current time elapsed in ms=37974
+Number of applications=2
+Total number of containers=3
+
+
+application_1417306258463_0012
+CHANGED STATE TO: RUNNING
+IN QUEUE: b
+at time elapsed: 38658
+CURRENT STATE: RUNNING
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+19
+current time elapsed in ms=40011
+Number of applications=2
+Total number of containers=3
+
+20
+current time elapsed in ms=42055
+Number of applications=2
+Total number of containers=3
+
+21
+current time elapsed in ms=44096
+Number of applications=2
+Total number of containers=3
+
+22
+current time elapsed in ms=46128
+Number of applications=2
+Total number of containers=3
+
+
+application_1417306258463_0011
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 1
+IN QUEUE: a
+at time elapsed: 47021
+CURRENT STATE: RUNNING
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+
+application_1417306258463_0012
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 2
+IN QUEUE: b
+at time elapsed: 47033
+CURRENT STATE: RUNNING
+CURRENT NUM CONTAINERS: 2
+CURRENT MEMORY ALLOCATED IN MB: 4096
+
+
+application_1417306258463_0011
+FINISHED IN: 33291
+IN QUEUE: a
+at time elapsed: 47545
+CURRENT STATE: FINISHED
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+
+application_1417306258463_0011
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 0
+IN QUEUE: a
+at time elapsed: 48033
+CURRENT STATE: FINISHED
+CURRENT NUM CONTAINERS: 0
+CURRENT MEMORY ALLOCATED IN MB: 0
+
+23
+current time elapsed in ms=48229
 Number of applications=1
-current time elapsed in ms=20142
-Number of applications=1application_1416384540736_0037 finished in: 13137
+Total number of containers=2
 
-current time elapsed in ms=22148
-Number of applications=0
+24
+current time elapsed in ms=50255
+Number of applications=1
+Total number of containers=2
+
+25
+current time elapsed in ms=52285
+Number of applications=1
+Total number of containers=2
+
+26
+current time elapsed in ms=54324
+Number of applications=1
+Total number of containers=2
+
+27
+current time elapsed in ms=56365
+Number of applications=1
+Total number of containers=2
+
+28
+current time elapsed in ms=58405
+Number of applications=1
+Total number of containers=2
+
+
+application_1417306258463_0012
+FINISHED IN: 45628
+IN QUEUE: b
+at time elapsed: 59961
+CURRENT STATE: FINISHED
+CURRENT NUM CONTAINERS: 2
+CURRENT MEMORY ALLOCATED IN MB: 4096
+
+
+application_1417306258463_0012
+CHANGED NUMBER OF RUNNING CONTAINERS TO: 1
+IN QUEUE: b
+at time elapsed: 60106
+CURRENT STATE: FINISHED
+CURRENT NUM CONTAINERS: 1
+CURRENT MEMORY ALLOCATED IN MB: 2048
+
+29
+current time elapsed in ms=60438
+Number of applications=1
+Total number of containers=1

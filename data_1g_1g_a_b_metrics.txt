@@ -1,90 +1,233 @@
-Date started: Thu Nov 20 01:37:42 EST 2014
-current time elapsed in ms=2046
-
-Cluster metrics: 
+Date started: Sat Nov 29 19:42:01 EST 2014
+1
+current time elapsed in ms=2350
 Allocated MB: 0
 Available MB: 6144
 Total MB: 6144
 Apps Running: 0
 Containers Allocated: 0
-Average Allocated MB: 0.0current time elapsed in ms=4060
-
-Cluster metrics: 
+Average Allocated MB: 0.0
+2
+current time elapsed in ms=4431
 Allocated MB: 0
 Available MB: 6144
 Total MB: 6144
 Apps Running: 0
 Containers Allocated: 0
-Average Allocated MB: 0.0current time elapsed in ms=6073
-
-Cluster metrics: 
+Average Allocated MB: 0.0
+3
+current time elapsed in ms=6523
 Allocated MB: 0
 Available MB: 6144
 Total MB: 6144
 Apps Running: 0
 Containers Allocated: 0
-Average Allocated MB: 0.0current time elapsed in ms=8087
-
-Cluster metrics: 
+Average Allocated MB: 0.0
+4
+current time elapsed in ms=8612
 Allocated MB: 0
 Available MB: 6144
 Total MB: 6144
 Apps Running: 0
 Containers Allocated: 0
-Average Allocated MB: 0.0current time elapsed in ms=10099
-
-Cluster metrics: 
+Average Allocated MB: 0.0
+5
+current time elapsed in ms=10733
+Allocated MB: 0
+Available MB: 6144
+Total MB: 6144
+Apps Running: 0
+Containers Allocated: 0
+Average Allocated MB: 0.0
+6
+current time elapsed in ms=12867
+Allocated MB: 0
+Available MB: 6144
+Total MB: 6144
+Apps Running: 0
+Containers Allocated: 0
+Average Allocated MB: 0.0
+7
+current time elapsed in ms=14968
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1
+Average Allocated MB: 292.57144
+8
+current time elapsed in ms=17014
 Allocated MB: 4096
 Available MB: 2048
 Total MB: 6144
 Apps Running: 2
 Containers Allocated: 2
-Average Allocated MB: 819.2current time elapsed in ms=12114
-
-Cluster metrics: 
+Average Allocated MB: 768.0
+9
+current time elapsed in ms=19067
 Allocated MB: 4096
 Available MB: 2048
 Total MB: 6144
 Apps Running: 2
 Containers Allocated: 2
-Average Allocated MB: 1365.3334current time elapsed in ms=14123
-
-Cluster metrics: 
+Average Allocated MB: 1137.7778
+10
+current time elapsed in ms=21111
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 1433.6
+11
+current time elapsed in ms=23169
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 1675.6364
+12
+current time elapsed in ms=25218
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 1877.3334
+13
+current time elapsed in ms=27273
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 2048.0
+14
+current time elapsed in ms=29320
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 2194.2856
+15
+current time elapsed in ms=31353
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 2
+Average Allocated MB: 2321.0667
+16
+current time elapsed in ms=33417
 Allocated MB: 6144
 Available MB: 0
 Total MB: 6144
 Apps Running: 2
 Containers Allocated: 3
-Average Allocated MB: 2048.0current time elapsed in ms=16129
-
-Cluster metrics: 
+Average Allocated MB: 2560.0
+17
+current time elapsed in ms=35503
 Allocated MB: 6144
 Available MB: 0
 Total MB: 6144
 Apps Running: 2
 Containers Allocated: 3
-Average Allocated MB: 2560.0current time elapsed in ms=18135
-
-Cluster metrics: 
+Average Allocated MB: 2770.8235
+18
+current time elapsed in ms=37974
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3
+Average Allocated MB: 2958.2222
+19
+current time elapsed in ms=40011
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3
+Average Allocated MB: 3125.8948
+20
+current time elapsed in ms=42055
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3
+Average Allocated MB: 3276.8
+21
+current time elapsed in ms=44096
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3
+Average Allocated MB: 3413.3333
+22
+current time elapsed in ms=46128
+Allocated MB: 6144
+Available MB: 0
+Total MB: 6144
+Apps Running: 2
+Containers Allocated: 3
+Average Allocated MB: 3537.4546
+23
+current time elapsed in ms=48229
 Allocated MB: 4096
 Available MB: 2048
 Total MB: 6144
 Apps Running: 1
 Containers Allocated: 2
-Average Allocated MB: 2730.6667current time elapsed in ms=20142
-
-Cluster metrics: 
+Average Allocated MB: 3561.739
+24
+current time elapsed in ms=50255
 Allocated MB: 4096
 Available MB: 2048
 Total MB: 6144
 Apps Running: 1
 Containers Allocated: 2
-Average Allocated MB: 2867.2current time elapsed in ms=22148
-
-Cluster metrics: 
-Allocated MB: 0
-Available MB: 6144
+Average Allocated MB: 3584.0
+25
+current time elapsed in ms=52285
+Allocated MB: 4096
+Available MB: 2048
 Total MB: 6144
-Apps Running: 0
-Containers Allocated: 0
-Average Allocated MB: 2606.5454
+Apps Running: 1
+Containers Allocated: 2
+Average Allocated MB: 3604.48
+26
+current time elapsed in ms=54324
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2
+Average Allocated MB: 3623.3845
+27
+current time elapsed in ms=56365
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2
+Average Allocated MB: 3640.889
+28
+current time elapsed in ms=58405
+Allocated MB: 4096
+Available MB: 2048
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 2
+Average Allocated MB: 3657.1428
+29
+current time elapsed in ms=60438
+Allocated MB: 2048
+Available MB: 4096
+Total MB: 6144
+Apps Running: 1
+Containers Allocated: 1
+Average Allocated MB: 3601.6553
