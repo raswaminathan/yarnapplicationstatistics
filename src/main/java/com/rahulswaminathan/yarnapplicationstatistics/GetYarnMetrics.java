@@ -5,17 +5,18 @@ package com.rahulswaminathan.yarnapplicationstatistics;
  */
 import java.io.*;
 import java.util.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-//import org.apache.spark.SparkContext;
 //import org.apache.spark.SparkConf;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -36,6 +37,7 @@ public class GetYarnMetrics {
     private String yarnWEBUI;
 
     public static void main(String[] args) throws Exception {
+
         GetYarnMetrics m = new GetYarnMetrics();
 
         m.start();
@@ -247,22 +249,42 @@ public class GetYarnMetrics {
     }
 
     private String sendGetToURL(String url) throws Exception {
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url);
+    //    HttpClient client = HttpClientBuilder.create().build();
+    //    HttpGet request = new HttpGet(url);
+
+	URL obj = new URL(url);
+	HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	con.setRequestMethod("GET");
+	con.setRequestProperty("User-Agent", USER_AGENT);
 
         // add request header
-        request.addHeader("User-Agent", USER_AGENT);
+    //   request.addHeader("User-Agent", USER_AGENT);
 
-        HttpResponse response = client.execute(request);
+	/*HttpResponse response = null;
+	try {
+        	response = client.execute(request);
+	} catch(Exception e) {
+		System.out.println("Failed Request: " + response);
+		e.printStackTrace();
+		System.exit(1);
+	}
 
         BufferedReader rd = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));
+                new InputStreamReader(response.getEntity().getContent()));*/
+
+	int code = con.getResponseCode();
+	System.out.println("Get request to " + url + " responded with a code: " + code);
+
+        BufferedReader rd = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
 
         StringBuffer result = new StringBuffer();
         String line = "";
         while ((line = rd.readLine()) != null) {
             result.append(line);
         }
+
+	rd.close();
         return result.toString();
     }
 
@@ -382,7 +404,7 @@ class StatsThread implements Runnable {
     private String sparkMaster;
 
     public StatsThread(int numIterations, String dmem, String emem, String sparkMaster, String... queues) {
-        this.numIterations = numIterations;
+this.numIterations = numIterations;
         this.dmem = dmem;
         this.emem = emem;
         this.queues = queues;
@@ -393,7 +415,6 @@ class StatsThread implements Runnable {
         try {
             if (numIterations <= 0)
                 return;
-
             launchSparkJob(dmem,emem,queues);
             numIterations--;
             Random r = new Random();
@@ -423,8 +444,9 @@ class StatsThread implements Runnable {
        // SparkContext sc = new SparkContext(conf);
 
         for (String queue : queues) {
-            new ProcessBuilder("/bin/bash", "/Users/rahulswaminathan/" +
-                    "IdeaProjects/yarn-application-statistics/run_spark_pi.sh", dmem, emem, queue).start();
+	//TODO: remove hardcoding
+ new ProcessBuilder("/bin/bash",
+                    "/home/biguser/yarnapplicationstatistics/run_spark_pi.sh", dmem, emem, queue).start();
         }
     }
 }
