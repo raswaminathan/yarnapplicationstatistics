@@ -8,10 +8,6 @@ import java.util.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -26,12 +22,14 @@ public class GetYarnMetrics {
     private final String USER_AGENT = "Mozilla/5.0";
     private String queuesAsString = "";
     private long startTime = 0;
+    // num of times the while loop in doStats() is entered
     private int iterationNumber = 0;
     private float totalAllocatedMB = 0;
-    private float averageAllocatdMB = 0;
+    private float averageAllocatedMB = 0;
     private String[] queues;
     private String emem;
     private String dmem;
+    // total number of jobs each queue performs
     private Integer numIterations;
     private String sparkMaster;
     private String yarnWEBUI;
@@ -77,7 +75,7 @@ public class GetYarnMetrics {
         startTime = System.currentTimeMillis();
 
         queuesAsString = "";
-        String filename = "data_" + dmem + "_" + emem;
+        String filename = "data_" + dmem + "_" + emem + "_" + numIterations;
 
         for (String str : queues) {
             filename += "_" + str;
@@ -86,6 +84,8 @@ public class GetYarnMetrics {
         final BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
         BufferedWriter schedulerWriter = new BufferedWriter(new FileWriter(filename + "_scheduler.txt", true));
         BufferedWriter metricsWriter = new BufferedWriter(new FileWriter(filename + "_metrics.txt", true));
+        BufferedWriter totalWriter = new BufferedWriter(new FileWriter("overall_stats.txt", false));
+
         GetYarnMetrics http = new GetYarnMetrics();
 
         overallWriter.write("executer memory: " + emem);
@@ -231,7 +231,12 @@ public class GetYarnMetrics {
 
             if (hasStarted && applicationListener.getAppsSet().isEmpty()) {
                 applicationListener.stopListening();
+                long totalTimeElapsed = currentTimeElapsed;
+                makeNewLines(overallWriter, schedulerWriter, metricsWriter);
+                writeMessage("Jobs finished in: " + totalTimeElapsed, overallWriter, schedulerWriter, metricsWriter);
                 flushAndCloseAllWriters(overallWriter, schedulerWriter, metricsWriter);
+                totalWriter.write(queuesAsString + " " + dmem + " " + emem + " " + numIterations +
+                        " " + totalAllocatedMB + " " + averageAllocatedMB + " " + totalTimeElapsed);
                 break;
             }
         }
@@ -381,7 +386,7 @@ public class GetYarnMetrics {
         writer.write("Allocated MB: " + Long.toString(metrics.getClusterMetrics().getAllocatedMB()));
         writer.newLine();
         totalAllocatedMB += metrics.getClusterMetrics().getAllocatedMB();
-        averageAllocatdMB = totalAllocatedMB / iterationNumber;
+        averageAllocatedMB = totalAllocatedMB / iterationNumber;
         writer.write("Available MB: " + Long.toString(metrics.getClusterMetrics().getAvailableMB()));
         writer.newLine();
         writer.write("Total MB: " + Long.toString(metrics.getClusterMetrics().getTotalMB()));
@@ -390,7 +395,7 @@ public class GetYarnMetrics {
         writer.newLine();
         writer.write("Containers Allocated: " + metrics.getClusterMetrics().getContainersAllocated());
         writer.newLine();
-        writer.write("Average Allocated MB: " + averageAllocatdMB);
+        writer.write("Average Allocated MB: " + averageAllocatedMB);
         writer.newLine();
     }
 }
