@@ -4,6 +4,8 @@ package com.rahulswaminathan.yarnapplicationstatistics;
  * Created by rahulswaminathan on 10/21/14.
  */
 import java.io.*;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.*;
 
 import org.apache.http.HttpResponse;
@@ -15,8 +17,11 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-//import org.apache.spark.SparkContext;
-//import org.apache.spark.SparkConf;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.Function2;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -36,9 +41,76 @@ public class GetYarnMetrics {
     private String yarnWEBUI;
 
     public static void main(String[] args) throws Exception {
-        GetYarnMetrics m = new GetYarnMetrics();
 
-        m.start();
+        GetYarnMetrics m = new GetYarnMetrics();
+//        m.start();
+        SparkConf conf = new SparkConf().setAppName("JavaSparkPi");
+        conf.set("spark.io.compression.codec","org.apache.spark.io.LZ4CompressionCodec");
+        conf.setMaster("yarn-client")
+                .setSparkHome(System.getenv("SPARK_HOME"));
+//        conf.set("fs.hdfs.impl",
+//                org.apache.hadoop.hdfs.DistributedFileSystem.class.getName()
+//        );
+//        conf.set("fs.file.impl",
+//                org.apache.hadoop.fs.LocalFileSystem.class.getName()
+//        );
+        ClassLoader sysClassLoader = ClassLoader.getSystemClassLoader();
+
+        //Get the URLs
+        URL[] urls = ((URLClassLoader)sysClassLoader).getURLs();
+
+        for(int i=0; i< urls.length; i++)
+        {
+            System.out.println(urls[i].getFile());
+        }
+        System.setProperty("SPARK_YARN_MODE", "true");
+
+        conf.set("spark.executer.instances", "1");
+        conf.set("spark.executer.cores", "1");
+        conf.set("spark.executer.memory", "1g");
+        conf.set("spark.yarn.queue", "a");
+        JavaSparkContext jsc = new JavaSparkContext(conf);
+        jsc.addJar("target/yarnapplicationstatistics-1.0-SNAPSHOT.jar");
+        jsc.addJar("target/dependency-jars/hadoop-hdfs-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-common-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-core-1.0.4.jar");
+        jsc.addJar("target/dependency-jars/hadoop-auth-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-annotations-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-api-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-client-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-common-2.4.0.jar");
+
+       //JavaSparkContext jsc = new JavaSparkContext("local", "Simple App",
+         //      System.getenv("SPARK_HOME"), new String[]{"target/yarnapplicationstatistics-1.0-SNAPSHOT.jar"});
+
+     //   Get the System Classloader
+//        ClassLoader sysClassLoader = ClassLoader.getSystemClassLoader();
+//
+//        //Get the URLs
+//        URL[] urls = ((URLClassLoader)sysClassLoader).getURLs();
+//
+//        for(int i=0; i< urls.length; i++)
+//        {
+//            System.out.println(urls[i].getFile());
+//        }
+
+
+        JavaSparkPi p = new JavaSparkPi(10);
+
+         p.doJob(jsc);
+//        String logFile = System.getenv("SPARK_HOME") + "/README.md";
+//        JavaRDD<String> logData = jsc.textFile(logFile).cache();
+//
+//        long numAs = logData.filter(new Function<String, Boolean>() {
+//            public Boolean call(String s) { return s.contains("a"); }
+//        }).count();
+//
+//        long numBs = logData.filter(new Function<String, Boolean>() {
+//            public Boolean call(String s) { return s.contains("b"); }
+//        }).count();
+//
+//        System.out.println("Lines with a: " + numAs + ", lines with b: " + numBs);
+//        jsc.stop();
     }
 
     public GetYarnMetrics() throws Exception {
@@ -417,14 +489,29 @@ class StatsThread implements Runnable {
     private void launchSparkJob(String dmem, String emem, String ... queues) throws Exception{
         // Create spark context, spark configuration, add listener, pass all parameters to third party program
         // (Ex. SparkPi)
-      //  SparkConf conf = new SparkConf();
-        //conf.setMaster(sparkMaster).setSparkHome(System.getenv("SPARK_HOME"));
+        SparkConf conf = new SparkConf().setAppName("JavaSparkPi");
+        conf.set("spark.io.compression.codec","org.apache.spark.io.LZ4CompressionCodec");
 
-       // SparkContext sc = new SparkContext(conf);
+        conf.setMaster("spark://127.0.0.1:7077").setSparkHome(System.getenv("SPARK_HOME"));
 
-        for (String queue : queues) {
-            new ProcessBuilder("/bin/bash", "/Users/rahulswaminathan/" +
-                    "IdeaProjects/yarn-application-statistics/run_spark_pi.sh", dmem, emem, queue).start();
-        }
+        //System.setProperty("SPARK_YARN_MODE", "true");
+        JavaSparkContext jsc = new JavaSparkContext(conf);
+        jsc.addJar("target/yarnapplicationstatistics-1.0-SNAPSHOT.jar");
+        jsc.addJar("target/dependency-jars/hadoop-hdfs-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-common-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-core-1.0.4.jar");
+        jsc.addJar("target/dependency-jars/hadoop-auth-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-annotations-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-api-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-client-2.4.0.jar");
+        jsc.addJar("target/dependency-jars/hadoop-yarn-common-2.4.0.jar");
+
+        JavaSparkPi p = new JavaSparkPi(10);
+
+        p.doJob(jsc);
+//        for (String queue : queues) {
+//            new ProcessBuilder("/bin/bash", "/Users/rahulswaminathan/" +
+//                    "IdeaProjects/yarn-application-statistics/run_spark_pi.sh", dmem, emem, queue).start();
+//        }
     }
 }
