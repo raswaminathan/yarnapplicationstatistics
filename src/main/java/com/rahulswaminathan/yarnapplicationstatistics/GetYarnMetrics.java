@@ -84,7 +84,7 @@ public class GetYarnMetrics {
         final BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
         BufferedWriter schedulerWriter = new BufferedWriter(new FileWriter(filename + "_scheduler.txt", true));
         BufferedWriter metricsWriter = new BufferedWriter(new FileWriter(filename + "_metrics.txt", true));
-        BufferedWriter totalWriter = new BufferedWriter(new FileWriter("overall_stats.txt", false));
+        BufferedWriter totalWriter = new BufferedWriter(new FileWriter("overall_stats.txt", true));
 
         GetYarnMetrics http = new GetYarnMetrics();
 
