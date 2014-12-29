@@ -83,10 +83,11 @@ public class GetYarnMetrics {
             filename += "_" + str;
             queuesAsString += str + " ";
         }
-        final BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
+        BufferedWriter overallWriter = new BufferedWriter(new FileWriter(filename + ".txt", true));
         BufferedWriter schedulerWriter = new BufferedWriter(new FileWriter(filename + "_scheduler.txt", true));
         BufferedWriter metricsWriter = new BufferedWriter(new FileWriter(filename + "_metrics.txt", true));
         BufferedWriter totalWriter = new BufferedWriter(new FileWriter("overall_stats.txt", true));
+        final BufferedWriter appStateWriter = new BufferedWriter(new FileWriter(filename + "_app_state.txt", true));
 
         GetYarnMetrics http = new GetYarnMetrics();
 
@@ -111,22 +112,22 @@ public class GetYarnMetrics {
             @Override
             public void onAppBegin(Apps.app app) {
                 try {
-                    overallWriter.newLine();
-                    overallWriter.newLine();
-                    writeMessage(app.getId(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("STARTED", overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
-                    overallWriter.newLine();
+                    appStateWriter.newLine();
+                    appStateWriter.newLine();
+                    writeMessage(app.getId(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("STARTED", appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), appStateWriter);
+                    appStateWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -136,24 +137,24 @@ public class GetYarnMetrics {
             public void onAppFinish(Apps.app app) {
                 try {
                     numAppsFinished++;
-                    overallWriter.newLine();
-                    overallWriter.newLine();
-                    writeMessage(app.getId(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("FINISHED IN: " + app.getElapsedTime(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("TOTAL NUMBER OF FINISHED APPS SO FAR: " + numAppsFinished, overallWriter);
-                    overallWriter.newLine();
+                    appStateWriter.newLine();
+                    appStateWriter.newLine();
+                    writeMessage(app.getId(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("FINISHED IN: " + app.getElapsedTime(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("TOTAL NUMBER OF FINISHED APPS SO FAR: " + numAppsFinished, appStateWriter);
+                    appStateWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -162,22 +163,22 @@ public class GetYarnMetrics {
             @Override
             public void onAppChangeState(Apps.app app) {
                 try {
-                    overallWriter.newLine();
-                    overallWriter.newLine();
-                    writeMessage(app.getId(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CHANGED STATE TO: " + app.getState(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
-                    overallWriter.newLine();
+                    appStateWriter.newLine();
+                    appStateWriter.newLine();
+                    writeMessage(app.getId(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CHANGED STATE TO: " + app.getState(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), appStateWriter);
+                    appStateWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -186,22 +187,22 @@ public class GetYarnMetrics {
             @Override
             public void onAppChangeContainers(Apps.app app) {
                 try {
-                    overallWriter.newLine();
-                    overallWriter.newLine();
-                    writeMessage(app.getId(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CHANGED NUMBER OF RUNNING CONTAINERS TO: " + app.getRunningContainers(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("IN QUEUE: " + app.getQueue(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT STATE: " + app.getState(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
-                    overallWriter.newLine();
-                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
-                    overallWriter.newLine();
+                    appStateWriter.newLine();
+                    appStateWriter.newLine();
+                    writeMessage(app.getId(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CHANGED NUMBER OF RUNNING CONTAINERS TO: " + app.getRunningContainers(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("IN QUEUE: " + app.getQueue(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("at time elapsed: " +  (System.currentTimeMillis() - startTime), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT STATE: " + app.getState(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), appStateWriter);
+                    appStateWriter.newLine();
+                    writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), appStateWriter);
+                    appStateWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -244,9 +245,9 @@ public class GetYarnMetrics {
                 flushAndCloseAllWriters(overallWriter, schedulerWriter, metricsWriter);
                 totalWriter.write(queuesAsString + " " + dmem + " " + emem + " " + numIterations +
                         " " + totalAllocatedMB + " " + averageAllocatedMB + " " + totalTimeElapsed);
-		totalWriter.newLine();
-		totalWriter.flush();
-		totalWriter.close();
+		        totalWriter.newLine();
+		        totalWriter.flush();
+		        totalWriter.close();
                 break;
             }
         }
