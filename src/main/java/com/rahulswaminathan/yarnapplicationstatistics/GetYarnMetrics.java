@@ -76,7 +76,7 @@ public class GetYarnMetrics {
 
         queuesAsString = "";
         String filename = "data_" + dmem + "_" + emem + "_" + numIterations;
-
+		System.out.println(filename);
         for (String str : queues) {
             filename += "_" + str;
             queuesAsString += str + " ";
@@ -237,6 +237,9 @@ public class GetYarnMetrics {
                 flushAndCloseAllWriters(overallWriter, schedulerWriter, metricsWriter);
                 totalWriter.write(queuesAsString + " " + dmem + " " + emem + " " + numIterations +
                         " " + totalAllocatedMB + " " + averageAllocatedMB + " " + totalTimeElapsed);
+		totalWriter.newLine();
+		totalWriter.flush();
+		totalWriter.close();
                 break;
             }
         }
@@ -265,7 +268,7 @@ public class GetYarnMetrics {
         // add request header
     //   request.addHeader("User-Agent", USER_AGENT);
 
-	/*HttpResponse response = null;
+	/*/HttpResponse response = null;
 	try {
         	response = client.execute(request);
 	} catch(Exception e) {
@@ -278,7 +281,7 @@ public class GetYarnMetrics {
                 new InputStreamReader(response.getEntity().getContent()));*/
 
 	int code = con.getResponseCode();
-	System.out.println("Get request to " + url + " responded with a code: " + code);
+	//System.out.println("Get request to " + url + " responded with a code: " + code);
 
         BufferedReader rd = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
