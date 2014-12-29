@@ -34,6 +34,8 @@ public class GetYarnMetrics {
     private String sparkMaster;
     private String yarnWEBUI;
 
+    private int numAppsFinished = 0;
+
     public static void main(String[] args) throws Exception {
 
         GetYarnMetrics m = new GetYarnMetrics();
@@ -133,6 +135,7 @@ public class GetYarnMetrics {
             @Override
             public void onAppFinish(Apps.app app) {
                 try {
+                    numAppsFinished++;
                     overallWriter.newLine();
                     overallWriter.newLine();
                     writeMessage(app.getId(), overallWriter);
@@ -148,6 +151,8 @@ public class GetYarnMetrics {
                     writeMessage("CURRENT NUM CONTAINERS: " + app.getRunningContainers(), overallWriter);
                     overallWriter.newLine();
                     writeMessage("CURRENT MEMORY ALLOCATED IN MB: " + app.getAllocatedMB(), overallWriter);
+                    overallWriter.newLine();
+                    writeMessage("TOTAL NUMBER OF FINISHED APPS SO FAR: " + numAppsFinished, overallWriter);
                     overallWriter.newLine();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -222,6 +227,8 @@ public class GetYarnMetrics {
             overallWriter.newLine();
             writeMessage("Total number of containers=" + getTotalContainers(schedulerQueues), overallWriter);
             overallWriter.newLine();
+            writeMessage("Number of applications finished=" + numAppsFinished, overallWriter);
+            overallWriter.newLine();
 
             writeQueueInfoToFile(schedulerWriter, schedulerQueues);
             writeClusterMetrics(metricsWriter, clusterMetricsResponse);
@@ -229,7 +236,7 @@ public class GetYarnMetrics {
             if (!hasStarted && numApps > 0)
                 hasStarted = true;
 
-            if (hasStarted && applicationListener.getAppsSet().isEmpty()) {
+            if (hasStarted && applicationListener.getAppsSet().isEmpty() && numAppsFinished == numIterations * queues.length) {
                 applicationListener.stopListening();
                 long totalTimeElapsed = currentTimeElapsed;
                 makeNewLines(overallWriter, schedulerWriter, metricsWriter);
