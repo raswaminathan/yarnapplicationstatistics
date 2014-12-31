@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+     <property>
+         <name>fs.default.name</name>
+         <value>hdfs://yahoo047:9000</value>
+     </property>
+<!--
+     <property>
+             <name>hadoop.tmp.dir</name>
+             <value>/home/biguser/tmp/hadoop-tmp</value>
+     </property>
+
+    <property>
+      <name>io.sort.factor</name>
+      <value>100</value>
+      <description>The number of streams to merge at once while sorting
+      files.  This determines the number of open file handles.</description>
+    </property>
+
+    <property>
+      <name>io.sort.mb</name>
+      <value>250</value>
+      <description>The total amount of buffer memory to use while sorting
+      files, in megabytes.  By default, gives each merge stream 1MB, which
+      should minimize seeks.</description>
+    </property>
+
+     <property>
+         <name>fs.inmemory.size.mb</name>
+         <value>200</value>
+     </property>
+
+     <property>
+         <name>io.file.buffer.size</name>
+         <value>131072</value>
+     </property>
+-->
+</configuration>
+
