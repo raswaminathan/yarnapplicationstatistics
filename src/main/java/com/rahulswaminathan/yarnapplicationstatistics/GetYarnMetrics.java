@@ -117,6 +117,7 @@ public class GetYarnMetrics {
                     writeMessage(app.getId(), appStateWriter);
                     appStateWriter.newLine();
                     writeMessage("STARTED", appStateWriter);
+                    System.out.println("Started: " + app.getId());
                     appStateWriter.newLine();
                     writeMessage("IN QUEUE: " + app.getQueue(), appStateWriter);
                     appStateWriter.newLine();
@@ -136,6 +137,7 @@ public class GetYarnMetrics {
             @Override
             public void onAppFinish(Apps.app app) {
                 try {
+                    System.out.println("Finished: " + app.getId() + " " + numAppsFinished);
                     numAppsFinished++;
                     appStateWriter.newLine();
                     appStateWriter.newLine();
@@ -163,6 +165,7 @@ public class GetYarnMetrics {
             @Override
             public void onAppChangeState(Apps.app app) {
                 try {
+                    System.out.println("Changed state to: " + app.getState() + " " + app.getId());
                     appStateWriter.newLine();
                     appStateWriter.newLine();
                     writeMessage(app.getId(), appStateWriter);
@@ -187,6 +190,7 @@ public class GetYarnMetrics {
             @Override
             public void onAppChangeContainers(Apps.app app) {
                 try {
+                    System.out.println("Changed num containers to: " + app.getRunningContainers() + " " + app.getId());
                     appStateWriter.newLine();
                     appStateWriter.newLine();
                     writeMessage(app.getId(), appStateWriter);
