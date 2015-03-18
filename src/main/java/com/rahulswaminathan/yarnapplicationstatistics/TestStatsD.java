@@ -16,7 +16,9 @@ public class TestStatsD {
 				SERVER_LOCATION, PORT);
 		DummyStatsDServer server = new DummyStatsDServer(PORT, PREFIX);
 
-		statsd.recordGaugeValue("baz", 100);
+		statsd.recordGaugeValue("test", 100);
+        statsd.recordGaugeValue("test", 200);
+        statsd.recordGaugeValue("rahul", 1000);
 		statsd.incrementCounter("hi");
 		statsd.incrementCounter("foo");
 		statsd.incrementCounter("foo");
@@ -36,15 +38,13 @@ public class TestStatsD {
 		statsd.recordExecutionTime("bag", 25);
 		statsd.recordSetEvent("qux", "one");
 
-		server.waitForMessage();
-
-//		for (String s : server.messagesReceived()) {
-//			System.out.println(s);
-//		}
-		
 		for (CountObject count : server.countMessages()) {
 			System.out.println(count.getTag() + ": " + count.getCount());
 		}
+
+        for (CountObject count: server.gaugeMessages()) {
+            System.out.println(count.getTag() + ": " + count.getCount());
+        }
 
 		server.stop();
 	}
