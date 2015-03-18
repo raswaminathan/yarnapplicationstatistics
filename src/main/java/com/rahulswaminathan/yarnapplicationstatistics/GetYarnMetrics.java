@@ -424,7 +424,7 @@ class StatsThread implements Runnable {
     private String sparkMaster;
 
     public StatsThread(int numIterations, String dmem, String emem, String sparkMaster, String... queues) {
-this.numIterations = numIterations;
+        this.numIterations = numIterations;
         this.dmem = dmem;
         this.emem = emem;
         this.queues = queues;
@@ -465,7 +465,7 @@ this.numIterations = numIterations;
 
         for (String queue : queues) {
 	//TODO: remove hardcoding
- new ProcessBuilder("/bin/bash",
+            new ProcessBuilder("/bin/bash",
                     "/home/biguser/yarnapplicationstatistics/run_spark_pi.sh", dmem, emem, queue).start();
         }
     }
