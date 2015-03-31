@@ -17,7 +17,7 @@ public class SchedulerDaemon {
     }
 
     public void run() {
-        Runnable run = new ClusterMetricsThread();
+        Runnable run = new SchedulerThread();
         new Thread(run).start();
     }
 }
