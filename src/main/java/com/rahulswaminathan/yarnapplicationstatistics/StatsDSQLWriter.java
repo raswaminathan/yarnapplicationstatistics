@@ -85,6 +85,8 @@ public class StatsDSQLWriter {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                mySQLWrapper.printTableInformation(MYSQL_TABLE_NAME);
             }
         }
     }
