@@ -28,10 +28,8 @@ public class SQLWrapper {
 			conn = DriverManager.getConnection("jdbc:mysql://" + host + "/"
 					+ databaseName + "?" + "user=" + user);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			printSQLInformation(e);
 		} catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -56,7 +54,6 @@ public class SQLWrapper {
 			statement.executeUpdate("UPDATE " + table + " SET value="
 					+ newValue + " WHERE tag='" + tag + "'");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			printSQLInformation(e);
 			return false;
 		}
@@ -83,7 +80,6 @@ public class SQLWrapper {
 			statement.executeUpdate("INSERT INTO " + table + " " + "VALUES ('"
 					+ tag + "', " + value + ")");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			printSQLInformation(e);
 			return false;
 		}
@@ -129,7 +125,6 @@ public class SQLWrapper {
 				System.out.println("");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			printSQLInformation(e);
 		}
 
