@@ -52,6 +52,8 @@ public class SQLWrapper {
         } catch (SQLException e) {
             //printSQLInformation(e);
             return false;
+        } catch (NullPointerException e) {
+            return false;
         }
 
         return true;
