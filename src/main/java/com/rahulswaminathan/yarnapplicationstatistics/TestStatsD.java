@@ -10,7 +10,7 @@ public class TestStatsD {
 	private static final String SERVER_LOCATION = "localhost";
 	private static final int PORT = 8125;
 
-	public static final void main(String[] args) {
+	public static void main(String[] args) {
 
 		StatsDClient statsd = new NonBlockingStatsDClient(PREFIX,
 				SERVER_LOCATION, PORT);
@@ -38,8 +38,9 @@ public class TestStatsD {
 		statsd.recordExecutionTime("bag", 25);
 		statsd.recordSetEvent("qux", "one");
 
+        server.waitForMessage();
 		for (CountObject count : server.countMessages()) {
-			System.out.println(count.getTag() + ": " + count.getCount());
+            System.out.println(count.getTag() + ": " + count.getCount());
 		}
 
         for (CountObject count: server.gaugeMessages()) {

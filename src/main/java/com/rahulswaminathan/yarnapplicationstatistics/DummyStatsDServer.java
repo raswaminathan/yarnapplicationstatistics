@@ -15,10 +15,6 @@ class DummyStatsDServer {
     private static final char GAUGE_CHAR = 'g';
     private Map<String, Integer> countMap;
     private Map<String, Integer> gaugeMap;
-
-
-
-
     private List<String> messagesReceived = new ArrayList<String>();
     private String prefix;
     private final DatagramSocket server;
@@ -71,6 +67,14 @@ class DummyStatsDServer {
 
     public List<String> messagesReceived() {
         return new ArrayList<String>(messagesReceived);
+    }
+
+    public Integer getLastCountValue(String count) {
+        return countMap.get(count);
+    }
+
+    public Integer getLastGaugeValue(String gauge) {
+        return gaugeMap.get(gauge);
     }
 
     public List<CountObject> countMessages() {
