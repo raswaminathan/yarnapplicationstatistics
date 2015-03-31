@@ -15,9 +15,13 @@ public class StatsDSQLWriter {
     private static final int PORT = 8125;
     private static final String COUNT_FILE = "counts";
     private static final String GAUGE_FILE = "gauges";
+    private static final String DATABASE_NAME = "test";
+    private static final String MYSQL_USERNAME = "root";
+    private static final String MYSQL_TABLE_NAME = "metrics";
     private List<String> countStrings;
     private List<String> gaugeStrings;
     private DummyStatsDServer server;
+    private SQLWrapper mySQLWrapper;
 
     public StatsDSQLWriter() {
         initialize();
@@ -32,6 +36,10 @@ public class StatsDSQLWriter {
         server = new DummyStatsDServer(PORT, PREFIX);
         countStrings = readFile(COUNT_FILE);
         gaugeStrings = readFile(GAUGE_FILE);
+        mySQLWrapper = new SQLWrapper(DATABASE_NAME , SERVER_LOCATION, MYSQL_USERNAME);
+        for (String gauge : gaugeStrings) {
+            mySQLWrapper.insertIntoTable(MYSQL_TABLE_NAME,gauge,0);
+        }
     }
 
     private List<String> readFile(String filename) {
@@ -64,7 +72,8 @@ public class StatsDSQLWriter {
                 /// instead of printing we need to write to mysql
 
                 for (String gauge : gaugeStrings) {
-                    System.out.println(server.getLastGaugeValue(gauge));
+                    //System.out.println(server.getLastGaugeValue(gauge));
+                    mySQLWrapper.updateValue(MYSQL_TABLE_NAME , gauge, server.getLastGaugeValue(gauge));
                 }
 
                 for (String count : countStrings) {
