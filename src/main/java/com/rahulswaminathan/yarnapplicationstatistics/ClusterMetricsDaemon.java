@@ -37,7 +37,6 @@ class ClusterMetricsThread implements Runnable {
         this.statsd = statsdd;
     }
 
-
     public void run() {
 
         PropsParser pp = new PropsParser();
@@ -50,7 +49,6 @@ class ClusterMetricsThread implements Runnable {
                 String clusterMetricsResponse = hgh.sendGet();
                 ObjectMapper mapper = new ObjectMapper();
                 ClusterMetrics metrics = mapper.readValue(clusterMetricsResponse, ClusterMetrics.class);
-
 
                 //System.out.println(clusterMetricsResponse);
 

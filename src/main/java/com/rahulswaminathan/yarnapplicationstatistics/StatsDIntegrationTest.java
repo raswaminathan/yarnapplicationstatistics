@@ -3,6 +3,12 @@ package com.rahulswaminathan.yarnapplicationstatistics;
 import com.timgroup.statsd.NonBlockingStatsDClient;
 import com.timgroup.statsd.StatsDClient;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rahulswaminathan on 3/18/15.
  */
@@ -11,7 +17,6 @@ public class StatsDIntegrationTest {
     private static final String PREFIX = "my.prefix";
     private static final String SERVER_LOCATION = "localhost";
     private static final int PORT = 8125;
-
 
     public static void main(String[] args) {
 
