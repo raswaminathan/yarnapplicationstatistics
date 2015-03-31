@@ -38,7 +38,9 @@ public class StatsDSQLWriter {
         gaugeStrings = readFile(GAUGE_FILE);
         mySQLWrapper = new SQLWrapper(DATABASE_NAME , SERVER_LOCATION, MYSQL_USERNAME);
         for (String gauge : gaugeStrings) {
-            mySQLWrapper.insertIntoTable(MYSQL_TABLE_NAME,gauge,0);
+            if (mySQLWrapper.removeRow(MYSQL_TABLE_NAME, gauge)) {
+                mySQLWrapper.insertIntoTable(MYSQL_TABLE_NAME,gauge,0);
+            }
         }
     }
 

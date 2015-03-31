@@ -35,6 +35,28 @@ public class SQLWrapper {
 
     }
 
+    /**
+     * Removes a row from the specified table.
+     * @param table
+     *          Table to remove row from.
+     * @param tag
+     *          Tag value of the row to be removed
+     * @return
+     *          True if row removed, false otherwise.
+     */
+    public boolean removeRow(String table, String tag) {
+        Statement statement;
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate("DELETE " + table + " WHERE tag='" + tag + "'");
+        } catch (SQLException e) {
+            //printSQLInformation(e);
+            return false;
+        }
+
+        return true;
+    }
+
 	/**
 	 * Updates a value in a given table, assuming that the table has two
 	 * columns, the first of which is a string, and the second is an integer.
