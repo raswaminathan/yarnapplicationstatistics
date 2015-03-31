@@ -30,7 +30,7 @@ public class ClusterMetricsDaemon {
 class ClusterMetricsThread implements Runnable {
 
     private volatile boolean running = true;
-    private static int WAIT_TIME = 10000;
+    private static int WAIT_TIME = 1000;
     StatsDClient statsd;
 
     public ClusterMetricsThread(StatsDClient statsdd) {

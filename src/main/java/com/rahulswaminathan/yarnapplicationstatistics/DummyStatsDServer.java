@@ -70,10 +70,16 @@ class DummyStatsDServer {
     }
 
     public Integer getLastCountValue(String count) {
+        if (!countMap.containsKey(count)) {
+            return -1;
+        }
         return countMap.get(count);
     }
 
     public Integer getLastGaugeValue(String gauge) {
+        if (!gaugeMap.containsKey(gauge)) {
+            return -1;
+        }
         return gaugeMap.get(gauge);
     }
 

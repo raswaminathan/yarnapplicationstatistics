@@ -103,7 +103,7 @@ public class SQLWrapper {
 			statement.executeUpdate("INSERT INTO " + table + " " + "VALUES ('"
 					+ tag + "', " + value + ")");
 		} catch (SQLException e) {
-			printSQLInformation(e);
+            printSQLInformation(e);
 			return false;
 		}
 
