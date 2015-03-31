@@ -48,11 +48,9 @@ public class SQLWrapper {
         Statement statement;
         try {
             statement = conn.createStatement();
-            statement.executeUpdate("DELETE " + table + " WHERE tag='" + tag + "'");
+            statement.executeUpdate("DELETE from " + table + " WHERE tag='" + tag + "'");
         } catch (SQLException e) {
             //printSQLInformation(e);
-            return false;
-        } catch (NullPointerException e) {
             return false;
         }
 
@@ -77,10 +75,11 @@ public class SQLWrapper {
 			statement = conn.createStatement();
 			statement.executeUpdate("UPDATE " + table + " SET value="
 					+ newValue + " WHERE tag='" + tag + "'");
-		} catch (SQLException e) {
-			printSQLInformation(e);
-			return false;
 		}
+         catch (SQLException e) {
+            printSQLInformation(e);
+            return false;
+        }
 
 		return true;
 	}
