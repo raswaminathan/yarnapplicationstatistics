@@ -11,7 +11,7 @@ public class StatsDIntegrationTest {
 
     public static void main(String[] args) {
 
-        DummyStatsDServer server = new DummyStatsDServer(PORT, PREFIX);
+        StatsDReceiver server = new StatsDReceiver(PORT, PREFIX);
 
         ClusterMetricsDaemon d = new ClusterMetricsDaemon();
         d.run();

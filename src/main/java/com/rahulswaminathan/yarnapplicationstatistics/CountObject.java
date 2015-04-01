@@ -2,19 +2,26 @@ package com.rahulswaminathan.yarnapplicationstatistics;
 
 public class CountObject {
 	private String tag;
-	private int count;
-	
-	public CountObject(String tag, int count) {
+	private int value;
+
+    /**
+     * An object that holds both a tag and a value. Models the relationship between a tag and its value from StatsD.
+     * @param tag
+     *          Name of the object
+     * @param value
+     *          Value of the object
+     */
+	public CountObject(String tag, int value) {
 		this.tag = tag;
-		this.count = count;
+		this.value = value;
 	}
 	
 	public String getTag() {
 		return tag;
 	}
 	
-	public int getCount() {
-		return count;
+	public int getValue() {
+		return value;
 	}
 	
 }

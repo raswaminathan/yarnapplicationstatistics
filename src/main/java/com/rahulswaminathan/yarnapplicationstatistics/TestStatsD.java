@@ -1,6 +1,5 @@
 package com.rahulswaminathan.yarnapplicationstatistics;
 
-import com.rahulswaminathan.yarnapplicationstatistics.CountObject;
 import com.timgroup.statsd.StatsDClient;
 import com.timgroup.statsd.NonBlockingStatsDClient;
 
@@ -14,7 +13,7 @@ public class TestStatsD {
 
 		StatsDClient statsd = new NonBlockingStatsDClient(PREFIX,
 				SERVER_LOCATION, PORT);
-		DummyStatsDServer server = new DummyStatsDServer(PORT, PREFIX);
+		StatsDReceiver server = new StatsDReceiver(PORT, PREFIX);
 
 		statsd.recordGaugeValue("test", 100);
         statsd.recordGaugeValue("test", 200);
@@ -40,11 +39,11 @@ public class TestStatsD {
 
         server.waitForMessage();
 		for (CountObject count : server.countMessages()) {
-            System.out.println(count.getTag() + ": " + count.getCount());
+            System.out.println(count.getTag() + ": " + count.getValue());
 		}
 
         for (CountObject count: server.gaugeMessages()) {
-            System.out.println(count.getTag() + ": " + count.getCount());
+            System.out.println(count.getTag() + ": " + count.getValue());
         }
 
 		server.stop();

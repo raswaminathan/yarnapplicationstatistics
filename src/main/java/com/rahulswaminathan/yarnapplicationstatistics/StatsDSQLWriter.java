@@ -18,20 +18,26 @@ public class StatsDSQLWriter {
     private static final String MYSQL_TABLE_NAME = "metrics";
     private Map<String, List<String>> tableNameToGaugesMap;
     private Map<String, List<String>> tableNameToCountsMap;
-    private DummyStatsDServer server;
+    private StatsDReceiver server;
     private SQLWrapper mySQLWrapper;
 
+    /**
+     * Writes the data collected from the StatsDReceiver to SQL.
+     */
     public StatsDSQLWriter() {
         initialize();
     }
 
+    /**
+     * Runs the StatsDSqlWriter thread.
+     */
     public void run() {
         Runnable run = new StatsDSQLWriterThread();
         new Thread(run).start();
     }
 
     private void initialize() {
-        server = new DummyStatsDServer(PORT, PREFIX);
+        server = new StatsDReceiver(PORT, PREFIX);
 
         tableNameToCountsMap = readProperties(COUNT_FILE);
         tableNameToGaugesMap = readProperties(GAUGE_FILE);
@@ -81,6 +87,9 @@ public class StatsDSQLWriter {
         mySQLWrapper.printTableInformation(tableName);
     }
 
+    /**
+     * Thread that runs consistently to pull data from the StatsDReceiver and saves it into MySQL using the SQLWrapper.
+     */
     class StatsDSQLWriterThread implements Runnable {
 
         public void run() {
