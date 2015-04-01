@@ -53,6 +53,14 @@ class ClusterMetricsThread implements Runnable {
                 //System.out.println(clusterMetricsResponse);
 
                 statsd.recordGaugeValue("allocatedMB", metrics.getClusterMetrics().getAllocatedMB());
+                statsd.recordGaugeValue("appsCompleted", metrics.getClusterMetrics().getAppsCompleted());
+                statsd.recordGaugeValue("appsSubmitted", metrics.getClusterMetrics().getAppsSubmitted());
+                statsd.recordGaugeValue("appsRunning", metrics.getClusterMetrics().getAppsRunning());
+                statsd.recordGaugeValue("availableMB", metrics.getClusterMetrics().getAvailableMB());
+                statsd.recordGaugeValue("activeNodes", metrics.getClusterMetrics().getActiveNodes());
+                statsd.recordGaugeValue("totalNodes", metrics.getClusterMetrics().getTotalNodes());
+                statsd.recordGaugeValue("appsFailed", metrics.getClusterMetrics().getAppsFailed());
+                statsd.recordGaugeValue("containersAllocated", metrics.getClusterMetrics().getContainersAllocated());
                 /// SHOULD POST MESSAGES TO KAFKA
 
             } catch (Exception e) {

@@ -35,6 +35,8 @@ class SchedulerThread implements Runnable {
         PropsParser pp = new PropsParser();
         String url = "http://" + pp.getYarnWEBUI() + "/ws/v1/cluster/scheduler";
         HttpGetHandler hgh = new HttpGetHandler(url);
+        System.out.println("scheduler daemon is running");
+
         while (running) {
             try {
                 Thread.sleep(WAIT_TIME);

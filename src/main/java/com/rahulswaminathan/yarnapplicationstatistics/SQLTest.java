@@ -21,6 +21,7 @@ public class SQLTest {
                 e.printStackTrace();
             }
             writer.printTable("cluster_metrics");
+            writer.printTable("application_logging");
         }
 
 

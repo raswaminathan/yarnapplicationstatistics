@@ -16,9 +16,6 @@ package com.rahulswaminathan.yarnapplicationstatistics;
  * limitations under the License.
  */
 
-
-import com.timgroup.statsd.NonBlockingStatsDClient;
-import com.timgroup.statsd.StatsDClient;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -34,22 +31,17 @@ import java.util.List;
  */
 public final class JavaSparkPi {
 
-    private static final String PREFIX = "my.prefix";
-    private static final String SERVER_LOCATION = "localhost";
-    private static final int PORT = 8125;
-
     public static void main(String[] args) throws Exception {
         SparkConf sparkConf = new SparkConf().setAppName("JavaSparkPi");
         JavaSparkContext jsc = new JavaSparkContext(sparkConf);
-        StatsDClient statsd = new NonBlockingStatsDClient(PREFIX,
-                SERVER_LOCATION, PORT);
+        ApplicationLogger logger = new ApplicationLogger();
 
         int slices = (args.length == 1) ? Integer.parseInt(args[0]) : 2;
         int n = 100000 * slices;
         List<Integer> l = new ArrayList<Integer>(n);
         for (int i = 0; i < n; i++) {
-            statsd.recordGaugeValue("I", i);
             l.add(i);
+            logger.logGauge("I", i);
         }
 
         JavaRDD<Integer> dataSet = jsc.parallelize(l, slices);
