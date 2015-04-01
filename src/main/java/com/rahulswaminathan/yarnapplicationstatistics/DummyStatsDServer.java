@@ -110,7 +110,7 @@ class DummyStatsDServer {
 
         if (messageType == COUNT_CHAR) {
             if (countMap.containsKey(info[0])) {
-                countMap.put(info[0], countMap.get(info[0])+1);
+                countMap.put(info[0], countMap.get(info[0])+Integer.parseInt(info[1]));
             }
             else {
                 countMap.put(info[0], 1);
