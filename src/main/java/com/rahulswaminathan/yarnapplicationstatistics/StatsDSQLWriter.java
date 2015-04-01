@@ -74,6 +74,11 @@ public class StatsDSQLWriter {
         return toReturn;
     }
 
+    /**
+     * Prints the specified SQL table to the console.
+     * @param tableName
+     *          Table to be printed.
+     */
     public void printTable(String tableName) {
         mySQLWrapper.printTableInformation(tableName);
     }
