@@ -1,7 +1,5 @@
 package com.rahulswaminathan.yarnapplicationstatistics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.util.*;
 
@@ -109,7 +107,7 @@ public class StatsDSQLWriter {
             for (String table : tableNameToGaugesMap.keySet()) {
                 List<String> gauges = tableNameToGaugesMap.get(table);
                 for (String gauge : gauges) {
-                    mySQLWrapper.updateValue(table, gauge, server.getLastGaugeValue(gauge));
+                    mySQLWrapper.updateValue(table, gauge, server.getGaugeValue(gauge));
                 }
             }
         }
@@ -117,7 +115,7 @@ public class StatsDSQLWriter {
             for (String table : tableNameToCountsMap.keySet()) {
                 List<String> counts = tableNameToCountsMap.get(table);
                 for (String count : counts) {
-                    mySQLWrapper.updateValue(table, count, server.getLastCountValue(count));
+                    mySQLWrapper.updateValue(table, count, server.getCountValue(count));
                 }
             }
         }

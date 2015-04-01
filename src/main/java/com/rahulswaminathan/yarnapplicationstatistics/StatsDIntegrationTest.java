@@ -1,14 +1,5 @@
 package com.rahulswaminathan.yarnapplicationstatistics;
 
-import com.timgroup.statsd.NonBlockingStatsDClient;
-import com.timgroup.statsd.StatsDClient;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by rahulswaminathan on 3/18/15.
  */
@@ -34,7 +25,7 @@ public class StatsDIntegrationTest {
                 e.printStackTrace();
             }
 
-            System.out.println(server.getLastGaugeValue("allocatedMB"));
+            System.out.println(server.getGaugeValue("allocatedMB"));
 
             try {
                 Thread.sleep(200);

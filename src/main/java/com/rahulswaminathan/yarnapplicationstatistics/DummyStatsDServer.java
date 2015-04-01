@@ -13,13 +13,19 @@ class DummyStatsDServer {
 
     private static final char COUNT_CHAR = 'c';
     private static final char GAUGE_CHAR = 'g';
+    private final DatagramSocket server;
     private Map<String, Integer> countMap;
     private Map<String, Integer> gaugeMap;
     private List<String> messagesReceived = new ArrayList<String>();
     private String prefix;
-    private final DatagramSocket server;
     private boolean run;
 
+    /**
+     * This is a thread to receive StatsD messages on a given port. It constantly listens for new messages sent over StatsD, and will organize them into maps to handle all counters and gauges.
+     *
+     * @param port   Port to listen on
+     * @param prefix Prefix tag of the running StatsD client.
+     */
     public DummyStatsDServer(int port, String prefix) {
         this.prefix = prefix;
         run = true;
@@ -38,7 +44,7 @@ class DummyStatsDServer {
                         final DatagramPacket packet = new DatagramPacket(
                                 new byte[256], 256);
                         server.receive(packet);
-                        String currentPacket = new String(packet.getData(),Charset.forName("UTF-8")).trim();
+                        String currentPacket = new String(packet.getData(), Charset.forName("UTF-8")).trim();
 
                         analyzePacket(currentPacket);
 
@@ -51,11 +57,17 @@ class DummyStatsDServer {
         }).start();
     }
 
+    /**
+     * Stops the StatsD server.
+     */
     public void stop() {
         run = false;
         server.close();
     }
 
+    /**
+     * Sleep until the server receives a message.
+     */
     public void waitForMessage() {
         while (messagesReceived.isEmpty()) {
             try {
@@ -65,35 +77,63 @@ class DummyStatsDServer {
         }
     }
 
+    /**
+     * Returns a list of the raw string packets received.
+     * @return
+     */
     public List<String> messagesReceived() {
         return new ArrayList<String>(messagesReceived);
     }
 
-    public Integer getLastCountValue(String count) {
+    /**
+     * Returns the value of the given counter.
+     * @param count
+     *          Counter to return.
+     * @return
+     *          Value of the given counter.
+     */
+    public Integer getCountValue(String count) {
         if (!countMap.containsKey(count)) {
             return -1;
         }
         return countMap.get(count);
     }
 
-    public Integer getLastGaugeValue(String gauge) {
+    /**
+     * Returns the value of the given gauge.
+     * @param gauge
+     *          Gauge to return.
+     * @return
+     *          Value of the given gauge.
+     */
+    public Integer getGaugeValue(String gauge) {
         if (!gaugeMap.containsKey(gauge)) {
             return -1;
         }
         return gaugeMap.get(gauge);
     }
 
+    /**
+     * Returns a list of the counters.
+     * @return
+     *          List of all counters as CountObjects.
+     */
     public List<CountObject> countMessages() {
         return getMessages(countMap);
     }
 
+    /**
+     * Returns a list of the gauges.
+     * @return
+     *          List of all gauges as CountObjects.
+     */
     public List<CountObject> gaugeMessages() {
         return getMessages(gaugeMap);
     }
 
     private List<CountObject> getMessages(Map<String, Integer> map) {
         List<CountObject> result = new ArrayList<CountObject>();
-        for (String key: map.keySet()) {
+        for (String key : map.keySet()) {
             CountObject current = new CountObject(key, map.get(key));
             result.add(current);
         }
@@ -105,24 +145,21 @@ class DummyStatsDServer {
         packet = packet.substring(prefix.length() + 1);
 
         char messageType = getMessageType(packet);
-        packet = packet.substring(0, packet.length()-2);
+        packet = packet.substring(0, packet.length() - 2);
         String[] info = packet.split(":");
 
         if (messageType == COUNT_CHAR) {
             if (countMap.containsKey(info[0])) {
-                countMap.put(info[0], countMap.get(info[0])+Integer.parseInt(info[1]));
-            }
-            else {
+                countMap.put(info[0], countMap.get(info[0]) + Integer.parseInt(info[1]));
+            } else {
                 countMap.put(info[0], 1);
             }
-        }
-
-        else if (messageType == GAUGE_CHAR) {
+        } else if (messageType == GAUGE_CHAR) {
             gaugeMap.put(info[0], Integer.parseInt(info[1]));
         }
     }
 
     private char getMessageType(String packet) {
-        return packet.charAt(packet.length()-1);
+        return packet.charAt(packet.length() - 1);
     }
 }
