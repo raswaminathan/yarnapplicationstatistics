@@ -12,6 +12,10 @@ import java.util.Random;
  */
 public class SchedulerDaemon {
 
+    /**
+     * A daemon that gathers information about the scheduler from the RM rest api. The run method launches a new thread
+     * that gathers information periodically and posts messages to statsd using the logging api.
+     */
     public SchedulerDaemon() {
 
     }
@@ -25,9 +29,11 @@ public class SchedulerDaemon {
 class SchedulerThread implements Runnable {
 
     private volatile boolean running = true;
-    private static int WAIT_TIME = 10000;
-    public SchedulerThread() {
+    private static int WAIT_TIME = 250;
+    private StatsDLogger logger;
 
+    public SchedulerThread() {
+        logger = new StatsDLogger();
     }
 
 
@@ -41,8 +47,13 @@ class SchedulerThread implements Runnable {
             try {
                 Thread.sleep(WAIT_TIME);
                 String schedulerResponse = hgh.sendGet();
+                Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
+                logger.logGauge("totalContainers", getTotalContainers(list));
+                logger.logGauge("totalActiveApplications", getTotalActiveApplications(list));
+                logger.logGauge("totalApplications", getTotalApplications(list));
+                logger.logGauge("maxApplications", getMaxApplications(list));
 
-                System.out.println(schedulerResponse);
+                //System.out.println(schedulerResponse);
                 /// SHOULD POST MESSAGES TO KAFKA
 
             } catch (Exception e) {
@@ -83,5 +94,13 @@ class SchedulerThread implements Runnable {
             totalApps += q.getNumApplications();
         }
         return totalApps;
+    }
+
+    private int getMaxApplications(Scheduler.queue[] list) {
+        int maxApps = 0;
+        for (Scheduler.queue q : list) {
+            maxApps += q.getMaxApplications();
+        }
+        return maxApps;
     }
 }

@@ -14,15 +14,17 @@ public class ClusterMetricsDaemon {
     private static final String PREFIX = "my.prefix";
     private static final String SERVER_LOCATION = "localhost";
     private static final int PORT = 8125;
-    StatsDClient statsd;
 
+    /**
+     * Daemon that uses the RM rest api to get information pertaining to cluster metrics. The daemon is started using the
+     * run method which launches the listener in a new thread. Information is sent to statsd using the logging api.
+     */
     public ClusterMetricsDaemon() {
-        statsd = new NonBlockingStatsDClient(PREFIX,
-                SERVER_LOCATION, PORT);
+
     }
 
     public void run() {
-        Runnable run = new ClusterMetricsThread(statsd);
+        Runnable run = new ClusterMetricsThread();
         new Thread(run).start();
     }
 }
@@ -31,10 +33,10 @@ class ClusterMetricsThread implements Runnable {
 
     private volatile boolean running = true;
     private static int WAIT_TIME = 1000;
-    StatsDClient statsd;
+    private StatsDLogger logger;
 
-    public ClusterMetricsThread(StatsDClient statsdd) {
-        this.statsd = statsdd;
+    public ClusterMetricsThread() {
+        logger = new StatsDLogger();
     }
 
     public void run() {
@@ -52,15 +54,15 @@ class ClusterMetricsThread implements Runnable {
 
                 //System.out.println(clusterMetricsResponse);
 
-                statsd.recordGaugeValue("allocatedMB", metrics.getClusterMetrics().getAllocatedMB());
-                statsd.recordGaugeValue("appsCompleted", metrics.getClusterMetrics().getAppsCompleted());
-                statsd.recordGaugeValue("appsSubmitted", metrics.getClusterMetrics().getAppsSubmitted());
-                statsd.recordGaugeValue("appsRunning", metrics.getClusterMetrics().getAppsRunning());
-                statsd.recordGaugeValue("availableMB", metrics.getClusterMetrics().getAvailableMB());
-                statsd.recordGaugeValue("activeNodes", metrics.getClusterMetrics().getActiveNodes());
-                statsd.recordGaugeValue("totalNodes", metrics.getClusterMetrics().getTotalNodes());
-                statsd.recordGaugeValue("appsFailed", metrics.getClusterMetrics().getAppsFailed());
-                statsd.recordGaugeValue("containersAllocated", metrics.getClusterMetrics().getContainersAllocated());
+                logger.logGauge("allocatedMB", (int) metrics.getClusterMetrics().getAllocatedMB());
+                logger.logGauge("appsCompleted", metrics.getClusterMetrics().getAppsCompleted());
+                logger.logGauge("appsSubmitted", metrics.getClusterMetrics().getAppsSubmitted());
+                logger.logGauge("appsRunning", metrics.getClusterMetrics().getAppsRunning());
+                logger.logGauge("availableMB", (int) metrics.getClusterMetrics().getAvailableMB());
+                logger.logGauge("activeNodes", metrics.getClusterMetrics().getActiveNodes());
+                logger.logGauge("totalNodes", metrics.getClusterMetrics().getTotalNodes());
+                logger.logGauge("appsFailed", metrics.getClusterMetrics().getAppsFailed());
+                logger.logGauge("containersAllocated", metrics.getClusterMetrics().getContainersAllocated());
                 /// SHOULD POST MESSAGES TO KAFKA
 
             } catch (Exception e) {

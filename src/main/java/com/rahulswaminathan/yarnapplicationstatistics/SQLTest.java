@@ -22,6 +22,7 @@ public class SQLTest {
             }
             writer.printTable("cluster_metrics");
             writer.printTable("application_logging");
+            writer.printTable("scheduler_metrics");
         }
 
 
