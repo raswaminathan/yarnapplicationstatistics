@@ -57,6 +57,19 @@ public class SQLWrapper {
         return true;
     }
 
+    public boolean createAppsTable(String table) {
+        Statement statement;
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate("CREATE TABLE " + table + "(tag varchar(255), value varchar(255))");
+        }
+        catch (SQLException e) {
+            printSQLInformation(e);
+            return false;
+        }
+
+        return true;
+    }
 	/**
 	 * Updates a value in a given table, assuming that the table has two
 	 * columns, the first of which is a string, and the second is an integer.
@@ -84,6 +97,33 @@ public class SQLWrapper {
 		return true;
 	}
 
+    /**
+     * Updates a value in a given table, assuming that the table has two
+     * columns, the first of which is a string, and the second is an string.
+     *
+     * @param table
+     *            Table to be updated
+     * @param tag
+     *            Tag to be updated.
+     * @param newValue
+     *            New value of the given tag.
+     * @return True on success, false otherwise.
+     */
+    public boolean updateValue(String table, String tag, String newValue) {
+        Statement statement;
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate("UPDATE " + table + " SET value='"
+                    + newValue + "' WHERE tag='" + tag + "'");
+        }
+        catch (SQLException e) {
+            printSQLInformation(e);
+            return false;
+        }
+
+        return true;
+    }
+
 	/**
 	 * Inserts a value into a given table, assuming that the table has two
 	 * columns, the first of which is a string, and the second is an integer.
@@ -109,6 +149,33 @@ public class SQLWrapper {
 
 		return true;
 	}
+
+
+    /**
+     * Inserts a value into a given table, assuming that the table has two
+     * columns, the first of which is a string, and the second is an string.
+     *
+     * @param table
+     *            Table to be edited.
+     * @param tag
+     *            First column of a table
+     * @param value
+     *            Second column of a table
+     * @return True on success, false otherwise.
+     */
+    public boolean insertIntoTable(String table, String tag, String value) {
+        Statement statement;
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate("INSERT INTO " + table + " " + "VALUES ('"
+                    + tag + "', '" + value + "')");
+        } catch (SQLException e) {
+            printSQLInformation(e);
+            return false;
+        }
+
+        return true;
+    }
 
 	/**
 	 * Prints the given table to the console.

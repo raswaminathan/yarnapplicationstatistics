@@ -10,6 +10,7 @@ public class LaunchDaemons {
         new ClusterMetricsDaemon().run();
         new SchedulerDaemon().run();
         new MonitorApplicationsDaemon().run();
+        new StatsDSQLWriter().run();
 
     }
 }
