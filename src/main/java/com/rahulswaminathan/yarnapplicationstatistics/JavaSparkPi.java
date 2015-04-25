@@ -34,7 +34,7 @@ public final class JavaSparkPi {
     public static void main(String[] args) throws Exception {
         SparkConf sparkConf = new SparkConf().setAppName("JavaSparkPi");
         JavaSparkContext jsc = new JavaSparkContext(sparkConf);
-        ApplicationLogger logger = new ApplicationLogger();
+        StatsDLogger logger = new StatsDLogger();
 
         int slices = (args.length == 1) ? Integer.parseInt(args[0]) : 2;
         int n = 100000 * slices;

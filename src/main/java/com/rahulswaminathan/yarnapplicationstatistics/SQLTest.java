@@ -9,9 +9,11 @@ public class SQLTest {
 
         StatsDSQLWriter writer = new StatsDSQLWriter();
 
-        ClusterMetricsDaemon d = new ClusterMetricsDaemon();
-        d.run();
+        //ClusterMetricsDaemon d = new ClusterMetricsDaemon();
+        //d.run();
 
+        MonitorApplicationsDaemon a = new MonitorApplicationsDaemon();
+        a.run();
         writer.run();
 
         while (true) {
@@ -22,6 +24,7 @@ public class SQLTest {
             }
             writer.printTable("cluster_metrics");
             writer.printTable("application_logging");
+            writer.printTable("scheduler_metrics");
         }
 
 
