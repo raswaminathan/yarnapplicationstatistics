@@ -6,7 +6,6 @@ Created on Apr 24, 2015
 
 import MySQLdb
 from time import sleep
-import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 
@@ -26,8 +25,7 @@ DATABASE = cp.get(database, 'database')
 TABLE = cp.get(database, 'table')
 TAG = cp.get(database, 'tag')
 NUMBER_OF_VISIBLE_DATAPOINTS = cp.getint(graph, 'numberOfVisibleDatapoints')
-Y_MAX = cp.getint(graph, 'yMax')
-TIME_INTERVAL = cp.getint(graph, 'timeInterval')
+TIME_INTERVAL = cp.getfloat(graph, 'timeInterval')
 
 def main():
     conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd='SOGkPxhY', db=DATABASE)
@@ -57,7 +55,7 @@ def main():
             values.append(newValue)
                 
             plt.cla()               
-            plt.axis([0, NUMBER_OF_VISIBLE_DATAPOINTS+1, 0, Y_MAX])     
+            plt.xlim([0, NUMBER_OF_VISIBLE_DATAPOINTS+1])     
             plt.title(TAG + ' Value over past ' + str(NUMBER_OF_VISIBLE_DATAPOINTS) + ' at time intervals of ' + str(TIME_INTERVAL) + ' second(s)')
             plt.xlabel("Time Intervals")
             plt.ylabel(TAG + " Value")
@@ -65,7 +63,7 @@ def main():
             plt.draw()
                 
             count=count+10
-            sleep(1)
+            sleep(TIME_INTERVAL)
         except KeyboardInterrupt:
             print("User has broken out of the loop")
             break
