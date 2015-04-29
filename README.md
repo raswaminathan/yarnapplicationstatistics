@@ -21,5 +21,31 @@ We are currently using Hadoop 2.4.0 due to compatability issues with later versi
 
 Any version of spark that is packaged with yarn can be used. On the cluster we are using Spark 1.0.1, on my local machine I am using Spark 1.1.0. The configuration files for Spark can be found in the spark_files directory in this project. Make sure the contents of these files match the files found in the conf/ directory of the Spark installation. Run an example job to make sure that Spark is configured properly.
 
+Running the Graphing package:
 
+We are using Python 2.7.2 to graph the data that Spark gets. Assuming you have nothing installed, and you are on Mac OSX with Homebrew installed, run the following commands:
 
+brew install python
+sudo pip install MySQL-python
+
+To verify that MySQLdb is installed correctly, run the following commands:
+
+python
+import MySQLdb
+
+If you get an error indicating that MySQLdb was not found, then you need to edit your PATH variable to set your /usr/local/bin before your /usr/bin. This will change your path so your Homebrew python is the primary source of your python, which is what pip uses when it installs your packages. Restart your Terminal and try the python and import statements again; you should not receive any errors.
+
+Run the following commands in Terminal:
+
+brew install pkg-config
+pip install matplotlib
+
+To run the grapher, type in the following command into Termainl:
+
+python Grapher.py
+
+This will run the graphing script indefinitely. Ctrl c will stop the graph from updating, and once you close the graph, the python program will terminate.
+
+Using the Grapher:
+
+To use the grapher, open graphProperties.ini. Here you will find the different properties that you need to utilize the graphing tool. Make sure all of the MySQL information allows you to access the MySQL table that StatsD is writing to, and that you have the desired data tag entered. In addition, you can change the number of datapoints that the graph remembers, or the frequency of how often it pulls from the database.
