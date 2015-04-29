@@ -10,16 +10,24 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 
+import ConfigParser
+cp = ConfigParser.ConfigParser()
+cp.read('graphProperties.ini')
 
-SERVER_LOCATION = "localhost";
-PORT = 8125;
-PASSWORD = 'SOGkPxhY'
-DATABASE = "test"
-TABLE = "metrics"
-TAG = 'RAM'
-NUMBER_OF_VISIBLE_DATAPOINTS = 20
-Y_MAX = 1000
-TIME_INTERVAL = 1
+sql = 'MySQL Login'
+database = 'Database'
+graph = 'Graph'
+
+SERVER_LOCATION = cp.get(sql, 'serverLocation')
+print(SERVER_LOCATION)
+PORT = cp.getint(sql, 'port')
+PASSWORD = cp.get(sql, 'password')
+DATABASE = cp.get(database, 'database')
+TABLE = cp.get(database, 'table')
+TAG = cp.get(database, 'tag')
+NUMBER_OF_VISIBLE_DATAPOINTS = cp.getint(graph, 'numberOfVisibleDatapoints')
+Y_MAX = cp.getint(graph, 'yMax')
+TIME_INTERVAL = cp.getint(graph, 'timeInterval')
 
 def main():
     conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd='SOGkPxhY', db=DATABASE)
@@ -37,7 +45,7 @@ def main():
     while(True):
         try:
             plt.ion()
-            #updateValue(cursor, TAG, count)
+            updateValue(cursor, TAG, count)
             newValue = getValueFromTable(cursor, TAG)
                 
             if len(values) >= NUMBER_OF_VISIBLE_DATAPOINTS:
@@ -79,3 +87,4 @@ def updateValue(cursor, tag, newValue):
     
    
 main()
+
