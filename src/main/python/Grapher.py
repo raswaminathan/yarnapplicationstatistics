@@ -26,6 +26,7 @@ TABLE = cp.get(database, 'table')
 TAG = cp.get(database, 'tag')
 NUMBER_OF_VISIBLE_DATAPOINTS = cp.getint(graph, 'numberOfVisibleDatapoints')
 TIME_INTERVAL = cp.getfloat(graph, 'timeInterval')
+Y_MAX = cp.getint(graph,'yMax')
 
 def main():
 
@@ -50,7 +51,7 @@ def main():
                 
             plt.cla()               
             plt.xlim([0, NUMBER_OF_VISIBLE_DATAPOINTS+1])
-            plt.ylim([0,10000])
+            plt.ylim([0,Y_MAX])
             plt.title(TAG + ' Value over past ' + str(NUMBER_OF_VISIBLE_DATAPOINTS) + ' datapoints at time intervals of ' + str(TIME_INTERVAL) + ' second(s)')
             plt.xlabel("Time Intervals")
             plt.ylabel(TAG + " Value")
