@@ -1,5 +1,32 @@
 yarnapplicationstatistics
 =========================
+YarnApplicationStatistics
+
+A framework for logging, collecting and visualizing metrics obtained from the Yarn Resource Manager REST API and from user application level logging. 
+
+Yarn Resource Manager REST API:
+
+We are making use of the metrics found in the Yarn RM REST API by querying the ClusterMetrics, Scheduler, and Application objects from the API. We receive JSON from the REST call and have created POJOs to represent the different objects. Then, we have methods that disassemble the larger object and pull out the useful metrics. For example, when looking at the ClusterMetrics, the user can grab fields such as allocatedMB or containersAllocated. We have specific daemons that are responsible for constantly (every 50 ms or so) querying the different REST APIs and gathering the useful information. These are the ClusterMetricsDaemon, SchedulerDaemon, and the MonitorApplicationsDaemon. The MonitorApplicationsDaemon is an extension of the ApplicationListener, which fires off events when applications begin, change state, change number of containers, or finish. All of the properties in conf.properties need to be filled out appropriately.
+
+StatsD:
+
+StatsD is a very useful system for logging numerical data and holding it in a central StatsD server. We modified existed Java implementations of StatsD to effectively store counts and gauges in the StatsDReceiver. Essentially, messages are logged to StatsD using the StatsDLogger API and an instance of StatsDReceiver gathers and stores the messages. 
+
+StatsD -> mySQL
+
+From StatsD, we store snapshots of the data in SQL. This is done using the StatsDSQLWriter. The metrics that the user wants to gather should be placed in the counts.properties and gauges.properties. The tables ought to be created 
+
+Putting it all together:
+
+Scripts :
+
+launch_daemons.sh launches each of the 3 data collection daemons and the SQLWriter. 
+run_spark_pi.sh launches the built-in spark pi job using spark_submit. The arguments are dmem, imem, and queueName. For example, “1g 1g default”.
+run_local_spark_pi.sh launches a locally created JavaSparkPi job (JavaSparkPi.java). The script takes the same args as the one above.
+
+mySQL setup:
+
+Create a SQL database and create all tables necessary for running (as detailed in the properties files). 
 
 Logging to SQL:
 
