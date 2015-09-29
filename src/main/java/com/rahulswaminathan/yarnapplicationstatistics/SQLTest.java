@@ -9,9 +9,6 @@ public class SQLTest {
 
         StatsDSQLWriter writer = new StatsDSQLWriter();
 
-        //ClusterMetricsDaemon d = new ClusterMetricsDaemon();
-        //d.run();
-
         MonitorApplicationsDaemon a = new MonitorApplicationsDaemon();
         a.run();
         writer.run();

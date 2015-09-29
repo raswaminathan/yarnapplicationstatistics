@@ -20,7 +20,6 @@ import java.util.Set;
  * Created by rahulswaminathan on 11/19/14.
  */
 public abstract class ApplicationListener {
-    private final String USER_AGENT = "Mozilla/5.0";
     private Set<Apps.app> appsSet = new HashSet<Apps.app>();
     private long startTime = 0;
     private Set<Apps.app> removedApps = new HashSet<Apps.app>();
@@ -60,30 +59,11 @@ public abstract class ApplicationListener {
         return appsSet;
     }
 
-    private String sendAppsGet(long startTime) throws Exception {
-        GetYarnMetrics y = new GetYarnMetrics();
-        String url = "http://" + y.getYarnWEBUI() + "/ws/v1/cluster/apps?startedTimeBegin=" + startTime;
-        return sendGetToURL(url);
-    }
-
-    private String sendGetToURL(String url) throws Exception {
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url);
-
-        // add request header
-        request.addHeader("User-Agent", USER_AGENT);
-
-        HttpResponse response = client.execute(request);
-
-        BufferedReader rd = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));
-
-        StringBuffer result = new StringBuffer();
-        String line = "";
-        while ((line = rd.readLine()) != null) {
-            result.append(line);
-        }
-        return result.toString();
+    private String sendAppsGet() throws Exception {
+        PropsParser pp = new PropsParser();
+        String url = "http://" + pp.getYarnWEBUI() + "/ws/v1/cluster/apps?startedTimeBegin=" + startTime;
+        HttpGetHandler hgh = new HttpGetHandler(url);
+        return hgh.sendGet();
     }
 
     private Apps.app[] readAppsJsonResponse(String appsJsonResponse) throws Exception {
@@ -110,7 +90,7 @@ public abstract class ApplicationListener {
         public void run() {
             while(running) {
                 try {
-                    String appsResponse = sendAppsGet(startTime);
+                    String appsResponse = sendAppsGet();
                     Apps.app[] apps = readAppsJsonResponse(appsResponse);
 
                     for (Apps.app app : apps) {

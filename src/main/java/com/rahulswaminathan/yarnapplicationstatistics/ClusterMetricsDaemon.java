@@ -11,10 +11,6 @@ import java.util.Random;
  */
 public class ClusterMetricsDaemon {
 
-    private static final String PREFIX = "my.prefix";
-    private static final String SERVER_LOCATION = "localhost";
-    private static final int PORT = 8125;
-
     /**
      * Daemon that uses the RM rest api to get information pertaining to cluster metrics. The daemon is started using the
      * run method which launches the listener in a new thread. Information is sent to statsd using the logging api.
@@ -52,8 +48,6 @@ class ClusterMetricsThread implements Runnable {
                 ObjectMapper mapper = new ObjectMapper();
                 ClusterMetrics metrics = mapper.readValue(clusterMetricsResponse, ClusterMetrics.class);
 
-                //System.out.println(clusterMetricsResponse);
-
                 logger.logGauge("allocatedMB", (int) metrics.getClusterMetrics().getAllocatedMB());
                 logger.logGauge("appsCompleted", metrics.getClusterMetrics().getAppsCompleted());
                 logger.logGauge("appsSubmitted", metrics.getClusterMetrics().getAppsSubmitted());
@@ -63,7 +57,6 @@ class ClusterMetricsThread implements Runnable {
                 logger.logGauge("totalNodes", metrics.getClusterMetrics().getTotalNodes());
                 logger.logGauge("appsFailed", metrics.getClusterMetrics().getAppsFailed());
                 logger.logGauge("containersAllocated", metrics.getClusterMetrics().getContainersAllocated());
-                /// SHOULD POST MESSAGES TO KAFKA
 
             } catch (Exception e) {
                 e.printStackTrace();

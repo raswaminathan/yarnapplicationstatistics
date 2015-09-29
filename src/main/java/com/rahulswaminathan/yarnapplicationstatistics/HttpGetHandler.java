@@ -38,21 +38,6 @@ public class HttpGetHandler {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
 
-            // add request header
-            //   request.addHeader("User-Agent", USER_AGENT);
-
-	/*/HttpResponse response = null;
-	try {
-        	response = client.execute(request);
-	} catch(Exception e) {
-		System.out.println("Failed Request: " + response);
-		e.printStackTrace();
-		System.exit(1);
-	}
-
-        BufferedReader rd = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));*/
-
             int code = con.getResponseCode();
             //System.out.println("Get request to " + url + " responded with a code: " + code);
 

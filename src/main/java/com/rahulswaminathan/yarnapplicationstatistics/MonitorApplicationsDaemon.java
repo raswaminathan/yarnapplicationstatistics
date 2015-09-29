@@ -12,6 +12,7 @@ public class MonitorApplicationsDaemon {
     private static final String TEMP_GAUGES_FILE = "gauges_temp.properties";
     private static final String QUEUE = "__queue";
     private static final String STATE = "__state";
+    private static final String NAME = "__name";
     private static final String NUM_CONTAINERS = "__numContainers";
     private static final String TIMESTAMP = "__timeStamp";
     private static final String ELAPSED_TIME = "__elapsedTime";
@@ -58,6 +59,7 @@ public class MonitorApplicationsDaemon {
     private void initializeSQLTable(Apps.app app) {
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + QUEUE, app.getQueue());
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + STATE, app.getState().toLowerCase());
+        mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + NAME, app.getName());
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + NUM_CONTAINERS,
                 Integer.toString(app.getRunningContainers()));
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + TIMESTAMP,
@@ -71,6 +73,7 @@ public class MonitorApplicationsDaemon {
     private void updateSQLInfo(Apps.app app) {
         mySqlWrapper.updateValue(app.getId(),  app.getId() + QUEUE, app.getQueue());
         mySqlWrapper.updateValue(app.getId(),  app.getId() + STATE, app.getState().toLowerCase());
+        mySqlWrapper.updateValue(app.getId(),  app.getId() + NAME, app.getName());
         mySqlWrapper.updateValue(app.getId(),  app.getId() + NUM_CONTAINERS,
                 Integer.toString(app.getRunningContainers()));
         mySqlWrapper.updateValue(app.getId(),  app.getId() + TIMESTAMP,

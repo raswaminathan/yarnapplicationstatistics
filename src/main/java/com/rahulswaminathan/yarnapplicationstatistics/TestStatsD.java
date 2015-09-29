@@ -38,6 +38,8 @@ public class TestStatsD {
 		statsd.recordSetEvent("qux", "one");
 
         server.waitForMessage();
+
+
 		for (CountObject count : server.countMessages()) {
             System.out.println(count.getTag() + ": " + count.getValue());
 		}
