@@ -48,7 +48,7 @@ class ClusterMetricsThread implements Runnable {
     public ClusterMetricsThread() {
         logger = new StatsDLogger();
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(CLUSTER_METRICS_FILENAME, true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(CLUSTER_METRICS_FILENAME, false));
             writer.write(TIMESTAMP + " " + ALLOCATED_MB + " " + APPS_COMPLETED + " " + APPS_SUBMITTED + " " +
                     APPS_RUNNING + " " + AVAILABLE_MB + " " + ACTIVE_NODES + " " +
                     TOTAL_NODES + " " + APPS_FAILED + " " + CONTAINERS_ALLOCATED);
