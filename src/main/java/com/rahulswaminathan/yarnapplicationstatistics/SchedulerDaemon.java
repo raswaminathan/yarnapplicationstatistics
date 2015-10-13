@@ -5,6 +5,9 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -28,14 +31,39 @@ public class SchedulerDaemon {
 
 class SchedulerThread implements Runnable {
 
+    private static final String TOTAL_CONTAINERS = "totalContainers";
+    private static final String TOTAL_ACTIVE_APPLICATIONS = "totalActiveApplications";
+    private static final String TOTAL_APPLICATIONS = "totalApplications";
+    private static final String MAX_APPLICATIONS = "maxApplications";
+    private static final String TIMESTAMP = "Current Time Stamp";
+    private static final String SCHEDULER_METRICS_FILENAME = "scheduler_metrics.txt";
+
     private volatile boolean running = true;
-    private static int WAIT_TIME = 250;
+    private static int WAIT_TIME = 1000;
     private StatsDLogger logger;
 
     public SchedulerThread() {
         logger = new StatsDLogger();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
+            writer.write(TIMESTAMP + " " + TOTAL_CONTAINERS + " " + TOTAL_ACTIVE_APPLICATIONS + " " + TOTAL_APPLICATIONS + " " +
+                    MAX_APPLICATIONS);
+            writer.newLine();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    private String generateSpaces(int length) {
+        StringBuilder toReturn = new StringBuilder();
+
+        for (int i = 0; i<length; i++) {
+            toReturn.append(" ");
+        }
+        return toReturn.toString();
+    }
 
     public void run() {
         PropsParser pp = new PropsParser();
@@ -48,11 +76,36 @@ class SchedulerThread implements Runnable {
                 Thread.sleep(WAIT_TIME);
                 String schedulerResponse = hgh.sendGet();
                 Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
-                logger.logGauge("totalContainers", getTotalContainers(list));
-                logger.logGauge("totalActiveApplications", getTotalActiveApplications(list));
-                logger.logGauge("totalApplications", getTotalApplications(list));
-                logger.logGauge("maxApplications", getMaxApplications(list));
 
+                String timeStamp = Long.toString(System.currentTimeMillis());
+                int totalContainers = getTotalContainers(list);
+                int totalActiveApplications = getTotalActiveApplications(list);
+                int totalApplications = getTotalApplications(list);
+                int maxApplications = getMaxApplications(list);
+
+                String time_space = generateSpaces(TIMESTAMP.length() - timeStamp.length() + 1);
+                String tc_space = generateSpaces(TOTAL_CONTAINERS.length() - Integer.toString(totalContainers).length() + 1);
+                String taa_space = generateSpaces(TOTAL_ACTIVE_APPLICATIONS.length() - Integer.toString(totalActiveApplications).length() + 1);
+                String ta_space = generateSpaces(TOTAL_APPLICATIONS.length() - Integer.toString(totalApplications).length() + 1);
+
+                StringBuilder stringToWrite = new StringBuilder();
+                stringToWrite.append(timeStamp + time_space + totalContainers + tc_space + totalActiveApplications +
+                        taa_space + totalApplications + ta_space + maxApplications);
+
+                logger.logGauge(TOTAL_CONTAINERS, totalContainers);
+                logger.logGauge(TOTAL_ACTIVE_APPLICATIONS, totalActiveApplications);
+                logger.logGauge(TOTAL_APPLICATIONS, totalApplications);
+                logger.logGauge(MAX_APPLICATIONS, maxApplications);
+
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
+                    writer.write(stringToWrite.toString());
+                    writer.newLine();
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //System.out.println(schedulerResponse);
                 /// SHOULD POST MESSAGES TO KAFKA
 

@@ -1,5 +1,6 @@
 package com.rahulswaminathan.yarnapplicationstatistics;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,14 @@ public class MonitorApplicationsDaemon {
     private static final String DATABASE_NAME = "test";
     private static final String MYSQL_USERNAME = "root";
     private static final String SERVER_LOCATION = "localhost";
+    private static final String TIMESTAMP_FOR_TABLE = "Current Time Stamp";
+    private static final String QUEUE_FOR_TABLE = "Application Queue";
+    private static final String STATE_FOR_TABLE = "Current Application State";
+    private static final String NAME_FOR_TABLE = "Application Name                               ";
+    private static final String NUM_CONTAINERS_FOR_TABLE = "Number of Containers";
+    private static final String ELAPSED_TIME_FOR_TABLE = "Elapsed Time";
+    private static final String ALLOCATED_MB_FOR_TABLE = "Allocated MB";
+
     private SQLWrapper mySqlWrapper;
 
     public MonitorApplicationsDaemon() {
@@ -56,7 +65,27 @@ public class MonitorApplicationsDaemon {
         myAppListener.startListening();
     }
 
+    private String generateSpaces(int length) {
+        StringBuilder toReturn = new StringBuilder();
+
+        for (int i = 0; i<length; i++) {
+            toReturn.append(" ");
+        }
+        return toReturn.toString();
+    }
+
     private void initializeSQLTable(Apps.app app) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(app.getId() + "_log.txt", true));
+            writer.write(TIMESTAMP_FOR_TABLE + " " + QUEUE_FOR_TABLE + " " + STATE_FOR_TABLE + " " + NAME_FOR_TABLE +
+                    " " + NUM_CONTAINERS_FOR_TABLE + " " + ELAPSED_TIME_FOR_TABLE + " " + ALLOCATED_MB_FOR_TABLE);
+            writer.newLine();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + QUEUE, app.getQueue());
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + STATE, app.getState().toLowerCase());
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + NAME, app.getName());
@@ -68,9 +97,29 @@ public class MonitorApplicationsDaemon {
                 Long.toString(app.getElapsedTime()));
         mySqlWrapper.insertIntoTable(app.getId(),  app.getId() + ALLOCATED_MB,
                 Integer.toString(app.getAllocatedMB()));
-
     }
+
     private void updateSQLInfo(Apps.app app) {
+
+        String queue = app.getQueue();
+        String state = app.getState().toLowerCase();
+        String name = app.getName();
+        String runningContainers = Integer.toString(app.getRunningContainers());
+        String timeStamp = Long.toString(System.currentTimeMillis());
+        String elapsedTime = Long.toString(app.getElapsedTime());
+        String allocatedMB = Integer.toString(app.getAllocatedMB());
+
+        String state_space = generateSpaces(STATE_FOR_TABLE.length() - state.length() + 1);
+        String queue_space = generateSpaces(QUEUE_FOR_TABLE.length() - queue.length() + 1);
+        String name_space = generateSpaces(NAME_FOR_TABLE.length() - name.length() + 1);
+        String running_space = generateSpaces(NUM_CONTAINERS_FOR_TABLE.length() - runningContainers.length() + 1);
+        String time_space = generateSpaces(TIMESTAMP_FOR_TABLE.length() - timeStamp.length() + 1);
+        String elapsed_space = generateSpaces(ELAPSED_TIME_FOR_TABLE.length() - elapsedTime.length() + 1);
+
+        StringBuilder stringToWrite = new StringBuilder();
+        stringToWrite.append(timeStamp + time_space + queue + queue_space + state + state_space +
+                name + name_space + runningContainers + running_space + elapsedTime + elapsed_space + allocatedMB);
+
         mySqlWrapper.updateValue(app.getId(),  app.getId() + QUEUE, app.getQueue());
         mySqlWrapper.updateValue(app.getId(),  app.getId() + STATE, app.getState().toLowerCase());
         mySqlWrapper.updateValue(app.getId(),  app.getId() + NAME, app.getName());
@@ -82,5 +131,15 @@ public class MonitorApplicationsDaemon {
                 Long.toString(app.getElapsedTime()));
         mySqlWrapper.updateValue(app.getId(),  app.getId() + ALLOCATED_MB,
                 Integer.toString(app.getAllocatedMB()));
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(app.getId() + "_log.txt", true));
+            writer.write(stringToWrite.toString());
+            writer.newLine();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
