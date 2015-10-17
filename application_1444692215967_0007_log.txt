@@ -1,0 +1,8 @@
+Current Time Stamp Application Queue Current Application State Application Name                                Number of Containers Elapsed Time Allocated MB
+1444708983772      default           accepted                  org.apache.spark.examples.SparkPi               0                    51           0
+1444708984091      default           accepted                  org.apache.spark.examples.SparkPi               1                    410          2048
+1444708987575      default           running                   org.apache.spark.examples.SparkPi               1                    3896         2048
+1444708988103      default           running                   org.apache.spark.examples.SparkPi               2                    4425         4096
+1444708991897      default           finished                  org.apache.spark.examples.SparkPi               2                    8180         4096
+1444708992113      default           finished                  org.apache.spark.examples.SparkPi               1                    8180         2048
+1444708992147      default           finished                  org.apache.spark.examples.SparkPi               -1                   8180         -1
