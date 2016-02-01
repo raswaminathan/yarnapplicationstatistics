@@ -1,5 +1,10 @@
 package com.rahulswaminathan.yarnapplicationstatistics;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import org.apache.avro.data.Json;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -8,7 +13,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by rahulswaminathan on 1/30/15.
@@ -37,6 +42,7 @@ class SchedulerThread implements Runnable {
     private static final String MAX_APPLICATIONS = "maxApplications";
     private static final String TIMESTAMP = "Current Time Stamp";
     private static final String SCHEDULER_METRICS_FILENAME = "scheduler_metrics.txt";
+    public static final String FAIR_SCHEDULER_FILENAME = "fair_scheduler_metrics.txt";
 
     private volatile boolean running = true;
     private static int WAIT_TIME = 1000;
@@ -48,6 +54,16 @@ class SchedulerThread implements Runnable {
             BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
             writer.write(TIMESTAMP + " " + TOTAL_CONTAINERS + " " + TOTAL_ACTIVE_APPLICATIONS + " " + TOTAL_APPLICATIONS + " " +
                     MAX_APPLICATIONS);
+            writer.newLine();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FAIR_SCHEDULER_FILENAME, true));
+            writer.write("queueName,parentQueue,schedulingPolicy,numPendingApps,numActiveApps,minResources,maxResources,usedResources" +
+                    "steadyFairResources,fairResources,clusterResources");
             writer.newLine();
             writer.flush();
             writer.close();
@@ -75,36 +91,84 @@ class SchedulerThread implements Runnable {
             try {
                 Thread.sleep(WAIT_TIME);
                 String schedulerResponse = hgh.sendGet();
-                Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
 
-                String timeStamp = Long.toString(System.currentTimeMillis());
-                int totalContainers = getTotalContainers(list);
-                int totalActiveApplications = getTotalActiveApplications(list);
-                int totalApplications = getTotalApplications(list);
-                int maxApplications = getMaxApplications(list);
+                Gson gson = new Gson();
+                JsonObject jo = gson.fromJson(schedulerResponse, JsonElement.class).getAsJsonObject();
 
-                String time_space = generateSpaces(TIMESTAMP.length() - timeStamp.length() + 1);
-                String tc_space = generateSpaces(TOTAL_CONTAINERS.length() - Integer.toString(totalContainers).length() + 1);
-                String taa_space = generateSpaces(TOTAL_ACTIVE_APPLICATIONS.length() - Integer.toString(totalActiveApplications).length() + 1);
-                String ta_space = generateSpaces(TOTAL_APPLICATIONS.length() - Integer.toString(totalApplications).length() + 1);
+                if (jo.get("scheduler").getAsJsonObject().get("schedulerInfo").
+                        getAsJsonObject().get("type").getAsString().equals("fairScheduler")) {
 
-                StringBuilder stringToWrite = new StringBuilder();
-                stringToWrite.append(timeStamp + time_space + totalContainers + tc_space + totalActiveApplications +
-                        taa_space + totalApplications + ta_space + maxApplications);
+                    StringBuilder stringToWrite = new StringBuilder();
+                  //  stringToWrite.append("queueName,parentQueue,minResources,maxResources,usedResources" +
+                //            "steadyFairResources,fairResources,clusterResources");
+                    Map<JsonElement, String> queuesToParentsMap = getAllQueuesToParents(jo);
+                    for (JsonElement e : queuesToParentsMap.keySet()) {
+                        JsonObject obj = e.getAsJsonObject();
+                        stringToWrite.append(obj.get("queueName") + ",");
+                        stringToWrite.append(queuesToParentsMap.get(e) + ",");
+                        stringToWrite.append(obj.get("schedulingPolicy") + ",");
+                        if (obj.has("numPendingApps")) {
+                            stringToWrite.append(obj.get("numPendingApps") + ",");
+                        } else {
+                            stringToWrite.append("N/A" + ",");
+                        }
+                        if (obj.has("numActiveApps")) {
+                            stringToWrite.append(obj.get("numActiveApps") + ",");
+                        } else {
+                            stringToWrite.append("N/A" + ",");
+                        }
+                        stringToWrite.append(obj.get("minResources") + ",");
+                        stringToWrite.append(obj.get("maxResources") + ",");
+                        stringToWrite.append(obj.get("usedResources") + ",");
+                        stringToWrite.append(obj.get("steadyFairResources") + ",");
+                        stringToWrite.append(obj.get("fairResources") + ",");
+                        stringToWrite.append(obj.get("clusterResources"));
+                        stringToWrite.append("\n");
+                    }
 
-                logger.logGauge(TOTAL_CONTAINERS, totalContainers);
-                logger.logGauge(TOTAL_ACTIVE_APPLICATIONS, totalActiveApplications);
-                logger.logGauge(TOTAL_APPLICATIONS, totalApplications);
-                logger.logGauge(MAX_APPLICATIONS, maxApplications);
+                    try {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(FAIR_SCHEDULER_FILENAME, true));
+                        writer.write(stringToWrite.toString());
+                        writer.newLine();
+                        writer.flush();
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-                try {
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
-                    writer.write(stringToWrite.toString());
-                    writer.newLine();
-                    writer.flush();
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                else {
+                    Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
+
+                    String timeStamp = Long.toString(System.currentTimeMillis());
+                    int totalContainers = getTotalContainers(list);
+                    int totalActiveApplications = getTotalActiveApplications(list);
+                    int totalApplications = getTotalApplications(list);
+                    int maxApplications = getMaxApplications(list);
+
+                    String time_space = generateSpaces(TIMESTAMP.length() - timeStamp.length() + 1);
+                    String tc_space = generateSpaces(TOTAL_CONTAINERS.length() - Integer.toString(totalContainers).length() + 1);
+                    String taa_space = generateSpaces(TOTAL_ACTIVE_APPLICATIONS.length() - Integer.toString(totalActiveApplications).length() + 1);
+                    String ta_space = generateSpaces(TOTAL_APPLICATIONS.length() - Integer.toString(totalApplications).length() + 1);
+
+                    StringBuilder stringToWrite = new StringBuilder();
+                    stringToWrite.append(timeStamp + time_space + totalContainers + tc_space + totalActiveApplications +
+                            taa_space + totalApplications + ta_space + maxApplications);
+
+                    logger.logGauge(TOTAL_CONTAINERS, totalContainers);
+                    logger.logGauge(TOTAL_ACTIVE_APPLICATIONS, totalActiveApplications);
+                    logger.logGauge(TOTAL_APPLICATIONS, totalApplications);
+                    logger.logGauge(MAX_APPLICATIONS, maxApplications);
+
+                    try {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
+                        writer.write(stringToWrite.toString());
+                        writer.newLine();
+                        writer.flush();
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 //System.out.println(schedulerResponse);
                 /// SHOULD POST MESSAGES TO KAFKA
@@ -113,6 +177,47 @@ class SchedulerThread implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Map<JsonElement, String> getAllQueuesToParents(JsonObject topObject) {
+        Map<JsonElement, String> queuesToParentMap = new HashMap<JsonElement, String>();
+
+        JsonElement rootQueueElement = topObject.get("scheduler").getAsJsonObject().get("schedulerInfo").
+                getAsJsonObject().get("rootQueue");
+
+        queuesToParentMap.put(rootQueueElement, "");
+
+        JsonObject rootQueueObject = rootQueueElement.getAsJsonObject();
+
+        if (rootQueueObject.has("childQueues")) {
+            JsonElement childQueues = rootQueueObject.get("childQueues");
+            queuesToParentMap.putAll(getAllChildQueues(childQueues, rootQueueObject.get("queueName").getAsString()));
+        }
+
+        return queuesToParentMap;
+    }
+
+    private Map<JsonElement, String> getAllChildQueues(JsonElement childQueues, String parent) {
+        Map<JsonElement, String> queuesToParentMap = new HashMap<JsonElement, String>();
+
+        if (childQueues.isJsonArray()) {
+            // this means that there are multiple child queues
+            JsonArray cqs = childQueues.getAsJsonArray();
+
+            for (int i = 0; i<cqs.size(); i++) {
+                JsonElement queue = cqs.get(i);
+                queuesToParentMap.put(queue, parent);
+
+                if (queue.getAsJsonObject().has("childQueues")) {
+                    JsonElement subChildQueues = queue.getAsJsonObject().get("childQueues");
+                    queuesToParentMap.putAll(getAllChildQueues(subChildQueues, queue.getAsJsonObject().get("queueName").getAsString()));
+                }
+            }
+        } else {
+            queuesToParentMap.put(childQueues, parent);
+        }
+
+        return queuesToParentMap;
     }
 
     private Scheduler.queue[] readClusterSchedulerJsonResponse(String clusterSchedulerResponse) throws Exception {
