@@ -3,7 +3,6 @@ package com.rahulswaminathan.yarnapplicationstatistics;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by rahulswaminathan on 1/14/15.
@@ -42,7 +41,7 @@ public class MonitorApplicationsDaemon {
         ApplicationListener myAppListener = new ApplicationListener() {
             @Override
             public void onAppBegin(Apps.app app) {
-                    mySqlWrapper.createAppsTable(app.getId());
+                    mySqlWrapper.createTagValueTable(app.getId());
                     initializeSQLTable(app);
                     updateSQLInfo(app);
             }

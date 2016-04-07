@@ -43,6 +43,13 @@ class SchedulerThread implements Runnable {
     private static final String TIMESTAMP = "Current Time Stamp";
     private static final String SCHEDULER_METRICS_FILENAME = "scheduler_metrics.txt";
     public static final String FAIR_SCHEDULER_FILENAME = "fair_scheduler_metrics.txt";
+    private SQLWrapper mySqlWrapper;
+    private static final String DATABASE_NAME = "test";
+    private static final String MYSQL_USERNAME = "root";
+    private static final String SERVER_LOCATION = "localhost";
+    private boolean isInitialized = false;
+    Set<String> parentQueueTables = new HashSet<String>();
+    Set<String> leafQueueTables = new HashSet<String>();
 
     private volatile boolean running = true;
     private static int WAIT_TIME = 1000;
@@ -50,6 +57,7 @@ class SchedulerThread implements Runnable {
 
     public SchedulerThread() {
         logger = new StatsDLogger();
+        mySqlWrapper = new SQLWrapper(DATABASE_NAME , SERVER_LOCATION, MYSQL_USERNAME);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
             writer.write(TIMESTAMP + " " + TOTAL_CONTAINERS + " " + TOTAL_ACTIVE_APPLICATIONS + " " + TOTAL_APPLICATIONS + " " +
@@ -135,40 +143,51 @@ class SchedulerThread implements Runnable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
+                } else {
 
-                else {
-                    Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
 
-                    String timeStamp = Long.toString(System.currentTimeMillis());
-                    int totalContainers = getTotalContainers(list);
-                    int totalActiveApplications = getTotalActiveApplications(list);
-                    int totalApplications = getTotalApplications(list);
-                    int maxApplications = getMaxApplications(list);
+                    Map<JsonElement, String> queuesToParentsMap = getAllQueuesToParentsForCapacityScheduler(jo);
 
-                    String time_space = generateSpaces(TIMESTAMP.length() - timeStamp.length() + 1);
-                    String tc_space = generateSpaces(TOTAL_CONTAINERS.length() - Integer.toString(totalContainers).length() + 1);
-                    String taa_space = generateSpaces(TOTAL_ACTIVE_APPLICATIONS.length() - Integer.toString(totalActiveApplications).length() + 1);
-                    String ta_space = generateSpaces(TOTAL_APPLICATIONS.length() - Integer.toString(totalApplications).length() + 1);
-
-                    StringBuilder stringToWrite = new StringBuilder();
-                    stringToWrite.append(timeStamp + time_space + totalContainers + tc_space + totalActiveApplications +
-                            taa_space + totalApplications + ta_space + maxApplications);
-
-                    logger.logGauge(TOTAL_CONTAINERS, totalContainers);
-                    logger.logGauge(TOTAL_ACTIVE_APPLICATIONS, totalActiveApplications);
-                    logger.logGauge(TOTAL_APPLICATIONS, totalApplications);
-                    logger.logGauge(MAX_APPLICATIONS, maxApplications);
-
-                    try {
-                        BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
-                        writer.write(stringToWrite.toString());
-                        writer.newLine();
-                        writer.flush();
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (!isInitialized) {
+                        initializeQueuesTables(queuesToParentsMap);
+                        isInitialized = true;
+                    } else {
+                        for (JsonElement e : queuesToParentsMap.keySet()) {
+                            updateQueueInfoInTable(e);
+                        }
                     }
+
+                    //Scheduler.queue[] list = readClusterSchedulerJsonResponse(schedulerResponse);
+
+//                    String timeStamp = Long.toString(System.currentTimeMillis());
+//                    int totalContainers = getTotalContainers(list);
+//                    int totalActiveApplications = getTotalActiveApplications(list);
+//                    int totalApplications = getTotalApplications(list);
+//                    int maxApplications = getMaxApplications(list);
+//
+//                    String time_space = generateSpaces(TIMESTAMP.length() - timeStamp.length() + 1);
+//                    String tc_space = generateSpaces(TOTAL_CONTAINERS.length() - Integer.toString(totalContainers).length() + 1);
+//                    String taa_space = generateSpaces(TOTAL_ACTIVE_APPLICATIONS.length() - Integer.toString(totalActiveApplications).length() + 1);
+//                    String ta_space = generateSpaces(TOTAL_APPLICATIONS.length() - Integer.toString(totalApplications).length() + 1);
+//
+//                    StringBuilder stringToWrite = new StringBuilder();
+//                    stringToWrite.append(timeStamp + time_space + totalContainers + tc_space + totalActiveApplications +
+//                            taa_space + totalApplications + ta_space + maxApplications);
+//
+//                    logger.logGauge(TOTAL_CONTAINERS, totalContainers);
+//                    logger.logGauge(TOTAL_ACTIVE_APPLICATIONS, totalActiveApplications);
+//                    logger.logGauge(TOTAL_APPLICATIONS, totalApplications);
+//                    logger.logGauge(MAX_APPLICATIONS, maxApplications);
+//
+//                    try {
+//                        BufferedWriter writer = new BufferedWriter(new FileWriter(SCHEDULER_METRICS_FILENAME, true));
+//                        writer.write(stringToWrite.toString());
+//                        writer.newLine();
+//                        writer.flush();
+//                        writer.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
                 //System.out.println(schedulerResponse);
                 /// SHOULD POST MESSAGES TO KAFKA
@@ -176,6 +195,117 @@ class SchedulerThread implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void initializeQueuesTables(Map<JsonElement, String> queuesToParentsMap) {
+        for (JsonElement e : queuesToParentsMap.keySet()) {
+            JsonObject obj = e.getAsJsonObject();
+            String queueName = obj.get("queueName").getAsString();
+            if (parentQueueTables.contains(queueName) || leafQueueTables.contains(queueName)) {
+                continue;
+            }
+            if (!mySqlWrapper.createTagValueTable(queueName)) {
+                continue;
+            };
+            // if it has queues it is a parent queue
+            if (obj.has("queues")) {
+                parentQueueTables.add(queueName);
+                try {
+                    mySqlWrapper.insertIntoTable(queueName, "capacity", obj.get("capacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "maxCapacity", obj.get("maxCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "numApplications", obj.get("numApplications").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteCapacity", obj.get("absoluteCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteMaxCapacity", obj.get("absoluteMaxCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "parentQueueName", queuesToParentsMap.get(e));
+                } catch (Exception ex) {
+
+                }
+            } else {
+                leafQueueTables.add(queueName);
+                try {
+                    mySqlWrapper.insertIntoTable(queueName, "capacity", obj.get("capacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "maxCapacity", obj.get("maxCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "numApplications", obj.get("numApplications").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteCapacity", obj.get("absoluteCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteMaxCapacity", obj.get("absoluteMaxCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "maxApplications", obj.get("maxApplications").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "maxApplicationsPerUser", obj.get("maxApplicationsPerUser").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "numActiveApplications", obj.get("numActiveApplications").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "numContainers", obj.get("numContainers").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "numPendingApplications", obj.get("numPendingApplications").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "resourcesUsed", obj.get("resourcesUsed").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "state", obj.get("state").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "usedCapacity", obj.get("usedCapacity").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "userLimit", obj.get("userLimit").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "users", obj.get("users").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "type", obj.get("type").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "userAMResourceLimit", obj.get("userAMResourceLimit").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "usedAMResource", obj.get("usedAMResource").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "AMResourceLimit", obj.get("AMResourceLimit").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "userLimitFactor", obj.get("userLimitFactor").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "preemptionDisabled", obj.get("preemptionDisabled").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "hideReservationQueues", obj.get("hideReservationQueues").getAsString());
+                    mySqlWrapper.insertIntoTable(queueName, "nodeLabels", obj.get("nodeLabels").toString());
+                    mySqlWrapper.insertIntoTable(queueName, "parentQueueName", queuesToParentsMap.get(e));
+                } catch (Exception ex) {
+
+                }
+            }
+        }
+    }
+
+    private boolean updateQueueInfoInTable(JsonElement e) {
+        JsonObject obj = e.getAsJsonObject();
+        String queueName = obj.get("queueName").getAsString();
+        if (parentQueueTables.contains(queueName)) {
+            try {
+                mySqlWrapper.updateValue(queueName, "capacity", obj.get("capacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "maxCapacity", obj.get("maxCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "numApplications", obj.get("numApplications").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteCapacity", obj.get("absoluteCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteMaxCapacity", obj.get("absoluteMaxCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+            } catch (Exception ex) {
+
+            }
+            return true;
+        } else if (leafQueueTables.contains(queueName)){
+            try {
+                mySqlWrapper.updateValue(queueName, "capacity", obj.get("capacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "maxCapacity", obj.get("maxCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "numApplications", obj.get("numApplications").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteCapacity", obj.get("absoluteCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteMaxCapacity", obj.get("absoluteMaxCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "maxApplications", obj.get("maxApplications").getAsString());
+                mySqlWrapper.updateValue(queueName, "maxApplicationsPerUser", obj.get("maxApplicationsPerUser").getAsString());
+                mySqlWrapper.updateValue(queueName, "numActiveApplications", obj.get("numActiveApplications").getAsString());
+                mySqlWrapper.updateValue(queueName, "numContainers", obj.get("numContainers").getAsString());
+                mySqlWrapper.updateValue(queueName, "absoluteUsedCapacity", obj.get("absoluteUsedCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "numPendingApplications", obj.get("numPendingApplications").getAsString());
+                mySqlWrapper.updateValue(queueName, "resourcesUsed", obj.get("resourcesUsed").toString());
+                mySqlWrapper.updateValue(queueName, "state", obj.get("state").getAsString());
+                mySqlWrapper.updateValue(queueName, "usedCapacity", obj.get("usedCapacity").getAsString());
+                mySqlWrapper.updateValue(queueName, "userLimit", obj.get("userLimit").getAsString());
+                mySqlWrapper.updateValue(queueName, "users", obj.get("users").toString());
+                mySqlWrapper.updateValue(queueName, "type", obj.get("type").getAsString());
+                mySqlWrapper.updateValue(queueName, "userAMResourceLimit", obj.get("userAMResourceLimit").toString());
+                mySqlWrapper.updateValue(queueName, "usedAMResource", obj.get("usedAMResource").toString());
+                mySqlWrapper.updateValue(queueName, "AMResourceLimit", obj.get("AMResourceLimit").toString());
+                mySqlWrapper.updateValue(queueName, "userLimitFactor", obj.get("userLimitFactor").getAsString());
+                mySqlWrapper.updateValue(queueName, "preemptionDisabled", obj.get("preemptionDisabled").getAsString());
+                mySqlWrapper.updateValue(queueName, "hideReservationQueues", obj.get("hideReservationQueues").getAsString());
+                mySqlWrapper.updateValue(queueName, "nodeLabels", obj.get("nodeLabels").toString());
+            } catch (Exception ex) {
+
+            }
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -220,12 +350,53 @@ class SchedulerThread implements Runnable {
         return queuesToParentMap;
     }
 
+    private Map<JsonElement, String> getAllQueuesToParentsForCapacityScheduler(JsonObject topObject) {
+        Map<JsonElement, String> queuesToParentMap = new HashMap<JsonElement, String>();
+
+        JsonElement rootQueueElement = topObject.get("scheduler").getAsJsonObject().get("schedulerInfo").
+                getAsJsonObject();
+
+        queuesToParentMap.put(rootQueueElement, "");
+
+        JsonObject rootQueueObject = rootQueueElement.getAsJsonObject();
+
+        if (rootQueueObject.has("queues")) {
+            JsonElement childQueues = rootQueueObject.get("queues").getAsJsonObject().get("queue");
+            queuesToParentMap.putAll(getAllChildQueuesForCapacityScheduler(childQueues, rootQueueObject.get("queueName").getAsString()));
+        }
+
+        return queuesToParentMap;
+    }
+
+    private Map<JsonElement, String> getAllChildQueuesForCapacityScheduler(JsonElement childQueues, String parent) {
+        Map<JsonElement, String> queuesToParentMap = new HashMap<JsonElement, String>();
+
+        if (childQueues.isJsonArray()) {
+            // this means that there are multiple child queues
+            JsonArray cqs = childQueues.getAsJsonArray();
+
+            for (int i = 0; i<cqs.size(); i++) {
+                JsonElement queue = cqs.get(i);
+                queuesToParentMap.put(queue, parent);
+
+                if (queue.getAsJsonObject().has("queues")) {
+                    JsonElement subChildQueues = queue.getAsJsonObject().get("queues").getAsJsonObject().get("queue");
+                    queuesToParentMap.putAll(getAllChildQueuesForCapacityScheduler(subChildQueues, queue.getAsJsonObject().get("queueName").getAsString()));
+                }
+            }
+        } else {
+            queuesToParentMap.put(childQueues, parent);
+        }
+
+        return queuesToParentMap;
+    }
+
     private Scheduler.queue[] readClusterSchedulerJsonResponse(String clusterSchedulerResponse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         JsonNode node = mapper.readTree(clusterSchedulerResponse);
-        node = node.get("scheduler").get("schedulerInfo").get("queues").get("queue");
+        node = node.get("scheduler").get("schedulerInfo").get("queues");
         TypeReference<Scheduler.queue[]> typeRef = new TypeReference<Scheduler.queue[]>() {};
         return mapper.readValue(node.traverse(), typeRef);
     }

@@ -57,19 +57,18 @@ public class SQLWrapper {
         return true;
     }
 
-    public boolean createAppsTable(String table) {
-        Statement statement;
-        try {
-            statement = conn.createStatement();
-            statement.executeUpdate("CREATE TABLE " + table + "(tag varchar(255), value varchar(255))");
-        }
-        catch (SQLException e) {
-            printSQLInformation(e);
-            return false;
-        }
+    public boolean createTagValueTable(String table) {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE TABLE " + table + "(tag varchar(255), value varchar(255))");
+		} catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 	/**
 	 * Updates a value in a given table, assuming that the table has two
 	 * columns, the first of which is a string, and the second is an integer.
