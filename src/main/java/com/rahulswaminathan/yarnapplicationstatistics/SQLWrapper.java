@@ -57,11 +57,78 @@ public class SQLWrapper {
         return true;
     }
 
-    public boolean createTagValueTable(String table) {
+	public boolean createParentQueueTable(String table) {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE TABLE " + table + "(capacity varchar(255), maxCapacity varchar(255), numApplications VARCHAR(255)" +
+					", absoluteCapacity varchar(255), absoluteMaxCapacity varchar(255), absoluteUsedCapacity varchar(255), parentQueueName varchar(255)" +
+					", timeStamp varchar(255))");
+		} catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean insertIntoQueueTable(String table, String ... values) {
+		Statement statement;
+		try {
+			String valueString = "";
+			for (int i = 0; i<values.length; i++) {
+				valueString += "' " + values[i] + "'";
+				if (i != values.length - 1) {
+					valueString+=",";
+				}
+			}
+			statement = conn.createStatement();
+			statement.executeUpdate("INSERT INTO " + table + " " + "VALUES (" + valueString + ")");
+		} catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean createChildQueueTable(String table) {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("CREATE TABLE " + table + "(capacity varchar(255), maxCapacity varchar(255), numApplications VARCHAR(255)" +
+					", absoluteCapacity varchar(255), absoluteMaxCapacity varchar(255), absoluteUsedCapacity varchar(255), parentQueueName varchar(255)" +
+					", timeStamp varchar(255), maxApplications VARCHAR(255), maxApplicationsPerUser VARCHAR(255), numContainers VARCHAR(255)" +
+					", numPendingApplications VARCHAR(255), resourcesUsed varchar(255), state varchar(255), usedCapacity varchar(255)" +
+					", userLimit VARCHAR(255), users varchar(255), type varchar(255), userAMResourceLimit varchar(255)" +
+					", usedAMResource varchar(255), AMResourceLimit varchar(255), userLimitFactor varchar(255), preemptionDisabled varchar(255)" +
+					", hideReservationQueues varchar(255), nodeLabels varchar(255))");
+		} catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean createTagValueTable(String table) {
 		Statement statement;
 		try {
 			statement = conn.createStatement();
 			statement.executeUpdate("CREATE TABLE " + table + "(tag varchar(255), value varchar(255))");
+		} catch (SQLException e) {
+			printSQLInformation(e);
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean dropTable(String table) {
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			statement.executeUpdate("drop table " + table);
 		} catch (SQLException e) {
 			printSQLInformation(e);
 			return false;

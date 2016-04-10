@@ -8,6 +8,7 @@ import MySQLdb
 from time import sleep
 import matplotlib.pyplot as plt
 import datetime
+import time
 
 import ConfigParser
 cp = ConfigParser.ConfigParser()
@@ -24,6 +25,7 @@ PASSWORD = cp.get(sql, 'password')
 DATABASE = cp.get(database, 'database')
 TABLE = cp.get(database, 'table')
 TAG = cp.get(database, 'tag')
+oldTagValue = TAG
 NUMBER_OF_VISIBLE_DATAPOINTS = cp.getint(graph, 'numberOfVisibleDatapoints')
 TIME_INTERVAL = cp.getfloat(graph, 'timeInterval')
 Y_MAX = cp.getint(graph,'yMax')
@@ -36,28 +38,43 @@ def main():
     index=1
     x = []
     values = []
-    
+    startTime = int(round(time.time()))
+    print startTime
     while(True):
         try:
+            oldTagValue = cp.get(database, 'tag')
+            cp.read('graphProperties.ini')
+            TABLE = cp.get(database, 'table')
+            TAG = cp.get(database, 'tag')
+
+            if oldTagValue != TAG:
+                x = []
+                values = []
+                index = 1
+
+            NUMBER_OF_VISIBLE_DATAPOINTS = cp.getint(graph, 'numberOfVisibleDatapoints')
+            TIME_INTERVAL = cp.getfloat(graph, 'timeInterval')
+            Y_MAX = cp.getint(graph,'yMax')
             plt.ion()
             newValue = getValueFromTable(TAG)
             if len(values) >= NUMBER_OF_VISIBLE_DATAPOINTS:
                 values.pop(0)
+                x.pop(0)
             else:
-                x.append(index)
                 index=index+1
-                
+              
+            curTime = int(round(time.time()))  
+            x.append(curTime)
             values.append(newValue)
                 
             plt.cla()               
-            plt.xlim([0, NUMBER_OF_VISIBLE_DATAPOINTS+1])
+            plt.xlim([startTime, curTime+250])
             plt.ylim([0,Y_MAX])
             plt.title(TAG + ' Value over past ' + str(NUMBER_OF_VISIBLE_DATAPOINTS) + ' datapoints at time intervals of ' + str(TIME_INTERVAL) + ' second(s)')
             plt.xlabel("Time Intervals")
             plt.ylabel(TAG + " Value")
             plt.scatter(x,values)
             plt.draw()
-                
             sleep(TIME_INTERVAL)
         except KeyboardInterrupt:
             print("User has stopped the grapher")
