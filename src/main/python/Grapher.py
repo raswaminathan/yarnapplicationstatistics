@@ -91,6 +91,21 @@ def getValueFromTable(tag):
     rows = cursor.fetchall()
     return rows[0]
 
+def getCapacityBetweenTimesFromTable(time1, time2):
+    conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd=PASSWORD, db=DATABASE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT capacity FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
+    rows = cursor.fetchall()
+    return rows[0]
+
+def getCapacityUpToTimeFromTable(time):
+    conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd=PASSWORD, db=DATABASE)
+    cursor = conn.cursor()
+    time2 = time
+    time1 = time-18000000
+    cursor.execute("SELECT capacity FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
+    rows = cursor.fetchall()
+    return rows[0]
 #def updateValue(cursor, tag, newValue):
     #print("UPDATE " + TABLE + " SET value="
     #                + str(newValue) + " WHERE tag='" + tag + "'")
