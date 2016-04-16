@@ -56,7 +56,8 @@ def main():
             TIME_INTERVAL = cp.getfloat(graph, 'timeInterval')
             Y_MAX = cp.getint(graph,'yMax')
             plt.ion()
-            newValue = getValueFromTable(TAG)
+            newValue = getCapacityUpToTimeFromTable(TAG, int(round(time.time() * 1000)))
+            #newValue = getValueFromTable(TAG)
             if len(values) >= NUMBER_OF_VISIBLE_DATAPOINTS:
                 values.pop(0)
                 x.pop(0)
@@ -91,19 +92,19 @@ def getValueFromTable(tag):
     rows = cursor.fetchall()
     return rows[0]
 
-def getCapacityBetweenTimesFromTable(time1, time2):
+def getCapacityBetweenTimesFromTable(tag, time1, time2):
     conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd=PASSWORD, db=DATABASE)
     cursor = conn.cursor()
-    cursor.execute("SELECT capacity FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
+    cursor.execute("SELECT " + tag + " FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
     rows = cursor.fetchall()
     return rows[0]
 
-def getCapacityUpToTimeFromTable(time):
+def getCapacityUpToTimeFromTable(tag, time):
     conn = MySQLdb.connect(host=SERVER_LOCATION, user="root", passwd=PASSWORD, db=DATABASE)
     cursor = conn.cursor()
     time2 = time
     time1 = time-18000000
-    cursor.execute("SELECT capacity FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
+    cursor.execute("SELECT " + tag + " FROM " + TABLE + " WHERE TimeStamp BETWEEN %s AND %s;", (time1), (time2))
     rows = cursor.fetchall()
     return rows[0]
 #def updateValue(cursor, tag, newValue):
